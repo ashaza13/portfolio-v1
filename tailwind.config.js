@@ -37,10 +37,41 @@ module.exports = {
           "100%": {
             borderColor: "white"
           }  
-        }
+        },
+        fadeIn: {
+          "0%": {
+            opacity: "0%",
+          },
+          "100%": {
+            opacity: "100%"
+          }
+        },
+        fadeInDown: {
+          "0%": {
+            opacity: "0%",
+            transform: "translateY(-20px)"
+          },
+          "100%": {
+            opacity: "100%",
+            transform: "translateY(0px)"
+          }
+        },
+        fadeInUp: {
+          "0%": {
+            opacity: "0%",
+            transform: "translateY(20px)"
+          },
+          "100%": {
+            opacity: "100%",
+            transform: "translateY(0px)"
+          }
+        },
       },
       animation: {
-        typing: "typing 2s steps(20), blink 1s infinite"
+        typing: "typing 2s steps(20), blink 1s infinite",
+        fadeIn: "fadeIn 1s ease-in forwards",
+        fadeInDown: "fadeInDown 1s ease-in",
+        fadeInUp: "fadeInUp 0.5s ease-in"
       }
     },
     fontFamily: {

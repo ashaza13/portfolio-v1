@@ -13,7 +13,7 @@ const navigation = [
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
-    <div className="px-6 pt-6 lg:px-8">
+    <div className="px-6 pt-6 lg:px-8 animate-fadeInDown">
       <nav className="flex items-center justify-between" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5 text-white text-xl transition hover:scale-125">
