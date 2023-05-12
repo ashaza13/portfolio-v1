@@ -1,7 +1,10 @@
 import Hero from './components/Hero.js';
 import Nav from './components/Nav.js';
 import About from './components/About.js';
-import Experince from './components/Experience.js';
+import Experience from './components/Experience.js';
+import Work from './components/Work.js';
+import Contact from './components/Contact.js';
+import Footer from './components/Footer.js';
 
 function App() {
   return (
@@ -9,7 +12,10 @@ function App() {
       <Nav />
       <Hero />
       <About />
-      <Experince />
+      <Experience />
+      <Work />
+      <Contact />
+      <Footer />
     </div>
   );
 }

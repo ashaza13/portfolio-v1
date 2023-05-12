@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useGlitch } from "react-powerglitch";
 
 
 const navigation = [
@@ -11,12 +12,14 @@ const navigation = [
 ]
 
 const Nav = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const glitchButton = useGlitch({ playMode: "hover"});
+
   return (
     <div className="px-6 pt-6 lg:px-8 animate-fadeInDown">
       <nav className="flex items-center justify-between" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5 text-white text-xl transition hover:scale-125">
+          <a href="#" className="-m-1.5 p-1.5 text-white text-xl transition hover:scale-150 hover:text-orange-500">
             A
           </a>
         </div>
@@ -32,12 +35,12 @@ const Nav = () => {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <a key={item.name} href="#" className="text-sm mt-2 font-semibold leading-6 text-white">
+            <a key={item.name} href="#" className="text-sm mt-2 font-semibold leading-6 text-white transition duration-500 hover:text-orange-500">
 
               {item.name}
             </a>
           ))}
-          <button className="bg-white text-black center px-8 py-2 transition hover:bg-black hover:text-white hover:drop-shadow-md">Resume</button>
+          <button ref={glitchButton.ref} className="bg-white text-black center px-8 py-2 transition hover:bg-black hover:text-white hover:drop-shadow-md">Resume</button>
         </div>
       </nav>
       <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>

@@ -2,8 +2,34 @@ import React from "react";
 import ashaz from "../static/ashaz.jpg";
 
 const About = () => {
+    // const targets = document.querySelectorAll(".js-show-on-scroll");
+
+    // // Callback for IntersectionObserver
+    // const callback = function (entries) {
+    //     entries.forEach(entry => {
+
+    //         // Is the element in the viewport?
+    //         if (entry.isIntersecting) {
+    //             // Add the fadeIn class:
+    //             entry.target.classList.add("animate-fadeIn");
+    //         } else {
+    //             entry.target.classList.remove("animate-fadeIn");
+    //         }
+    //     });
+    // };
+
+    // // Set up a new observer
+    // const observer = new IntersectionObserver(callback);
+
+    // // Loop through each of the target
+    // targets.forEach(function (target) {
+
+    //     // Add the element to the watcher
+    //     observer.observe(target);
+    // });
+
     return (
-        <div className="flex justify-center py-28 sm:py-48 lg:py-56">
+        <div className="flex justify-center py-32 sm:py-32 lg:py-32">
             <div className="max-w-lg text-left">
                 <h1 className="text-white font-bold text-2xl">About Me</h1>
                 <p className="text-white pt-4">Hello! I am currently a student at Virginia Polytechnic Institute and State University pursuing my undergraduate degree in Computer Science. My interest in Computer Science started as child when I was exposed to Wordpress and created a website for a science fair.</p>
@@ -27,10 +53,10 @@ const About = () => {
                     <li className="text-white">
                         Flask
                     </li>
-                </ul> 
+                </ul>
             </div>
             <div>
-                <img src={ashaz} alt="ashaz" className="my-5 ml-4 w-72 rounded-md drop-shadow-lg transition hover:-translate-x-2 hover:-translate-y-2" />
+                <img src={ashaz} alt="ashaz" className="my-10 ml-6 w-72 rounded-md drop-shadow-lg transition hover:-translate-x-2 hover:-translate-y-2" />
             </div>
         </div>
     )
