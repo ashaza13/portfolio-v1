@@ -17,9 +17,6 @@ module.exports = {
         slate: '#333743',
         darkSlate: '#242831',
       },
-      container: {
-        padding: '2rem',
-      },
       keyframes: {
         typing: {
           "0%": {

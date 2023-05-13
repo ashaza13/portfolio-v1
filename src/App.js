@@ -5,18 +5,21 @@ import Experience from './components/Experience.js';
 import Work from './components/Work.js';
 import Contact from './components/Contact.js';
 import Footer from './components/Footer.js';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="bg-darkSlate font-abc">
-      <Nav />
-      <Hero />
-      <About />
-      <Experience />
-      <Work />
-      <Contact />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="bg-darkSlate font-abc">
+        <Nav />
+        <Hero />
+        <About />
+        <Experience />
+        <Work />
+        <Contact />
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
