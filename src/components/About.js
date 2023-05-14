@@ -30,9 +30,13 @@ const About = () => {
 
     return (
         <section id="about">
-            <div className="flex justify-center py-32 sm:py-32 lg:py-32">
+            <div className="flex justify-center py-28 sm:py-28 lg:py-28">
                 <div className="max-w-lg text-left">
-                    <h1 className="text-white font-bold text-2xl">About Me</h1>
+                    <div className="relative flex items-center">
+                        <p className="text-orange-600 font-bold text-2xl mr-2">01.</p>
+                        <h1 className="mr-4 text-white font-bold text-2xl">About Me</h1>
+                        <div className="max-w-sm flex-grow border-t-2 border-slate"></div>
+                    </div>
                     <p className="text-white pt-4">Hello! I am currently a student at Virginia Polytechnic Institute and State University pursuing my undergraduate degree in Computer Science. My interest in Computer Science started as child when I was exposed to Wordpress and created a website for a science fair.</p>
                     <p className="text-white py-4">I am very passionate about Computer Science. I have worked on and continue to work on many projects to expand my knowledge. Recently, I joined the <a href="https://eng.vt.edu/academics/student-teams/hevt.html" target="_blank" className="group text-orange-600 transition duration-300">Hokie Electric Vehicle Team<span className="inline-block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-orange-600"></span></a> creating MATLAB simulations utilizing machine learning tools such as TensorFlow.</p>
                     <ul className="columns-2 list-disc list-inside py-4 text-white">

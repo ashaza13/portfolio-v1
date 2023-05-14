@@ -5,9 +5,13 @@ const Experience = () => {
 
     return (
         <section id="experience">
-            <div className="flex justify-center py-32 sm:py-32 lg:py-32">
+            <div className="flex justify-center py-28 sm:py-28 lg:py-28">
                 <div className="max-w-lg my-10 text-left">
-                    <h1 className="text-white font-bold text-2xl">Where I've Worked</h1>
+                    <div className="relative flex items-center">
+                        <p className="text-orange-600 font-bold text-2xl mr-2">02. </p>
+                        <h1 className="mr-4 text-white font-bold text-2xl">Where I've Worked</h1>
+                        <div className="max-w-sm flex-grow border-t-2 border-slate"></div>
+                    </div>
                     <div>
                         <ul className="mt-6 text-lightGray">
                             <li className={openTab === 1 ? "justify-center border-l-2 px-2 py-4 transition duration-500 text-orange-600 bg-slate border-orange-600" : "justify-center border-l-2 px-2 py-4 transition duration-500 hover:bg-slate"}>

@@ -38,6 +38,7 @@ const Nav = () => {
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
             <HashLink key={item.name} to={item.linkUrl} smooth className="text-sm mt-2 font-semibold leading-6 text-white transition duration-500 hover:text-orange-500">
+              <p className="inline-block text-orange-600 mr-1">{item.number}</p>
               {item.name}
             </HashLink>
           ))}
@@ -63,9 +64,10 @@ const Nav = () => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a href="#" key={item.name} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white hover:bg-gray-400/10">
+                  <HashLink href="#" key={item.name} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white hover:bg-gray-400/10">
+                    <p className="inline-block text-orange-600 mr-1">{item.number}</p>
                     {item.name}
-                  </a>
+                  </HashLink>
                 ))}
               </div>
             </div>

@@ -6,6 +6,7 @@ import Work from './components/Work.js';
 import Contact from './components/Contact.js';
 import Footer from './components/Footer.js';
 import { BrowserRouter } from 'react-router-dom';
+import StickySocials from './components/StickySocials.js';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Work />
         <Contact />
         <Footer />
+        <StickySocials />
       </div>
     </BrowserRouter>
   );

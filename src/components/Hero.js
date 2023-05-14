@@ -14,7 +14,7 @@ const Hero = () => {
                 <p ref={glitch.ref} className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white text-white text-7xl text-left">ASHAZ AHMED</p>
                 <p className="text-left text-lightGray text-3xl py-2 animate-fadeIn">I like to make things</p>
                 <p className="text-white text-left py-2 animate-fadeIn">I'm a Computer Science student at Virginia Polytechnic Institute and State University.</p>
-                <a href="https://github.com/ashaza13" target="_blank"><button ref={glitchButton.ref} className="bg-white text-black center px-8 py-2 mt-8 transition hover:bg-black hover:text-white">View My Work</button></a>
+                <a href="https://github.com/ashaza13" target="_blank"><button ref={glitchButton.ref} className="bg-white text-black drop-shadow-lg center px-8 py-2 mt-8 transition hover:bg-black hover:text-white">View My Work</button></a>
             </div>
         </div>
     )
