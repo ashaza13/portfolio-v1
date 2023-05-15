@@ -1,6 +1,6 @@
 import React from "react";
-import CardLeft from "./CardLeft";
-import CardRight from "./CardRight";
+import CardLeft from "../components/CardLeft";
+import CardRight from "../components/CardRight";
 
 
 const Work = () => {
