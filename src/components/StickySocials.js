@@ -11,8 +11,17 @@ const StickySocials = () => {
                 <li className="pb-6">
                     <a href="#" target="_blank"><FiCamera className="transition duration-500 hover:text-orange-600 hover:-translate-y-2" /></a>
                 </li>
-                <li className="mb-20">
+                <li className="pb-2">
                     <a href="#" target="_blank"><FiLinkedin className="transition duration-500 hover:text-orange-600 hover:-translate-y-2" /></a>
+                </li>
+                <li className="py-4">
+                    <div className="border-t-2 border-white"></div>
+                </li>
+                <li className="py-4">
+                    <div className="border-t-2 border-white"></div>
+                </li>
+                <li className="pb-12 pt-4">
+                    <div className="border-t-2 border-white"></div>
                 </li>
             </ul>
         </div>

@@ -23,12 +23,12 @@ const Experience = () => {
                         </ul>
                     </div>
                 </div>
-                <div className={openTab === 1 ? "transition block max-w-lg md:my-24 mx-4" : "transition hidden"}>
+                <div className={openTab === 1 ? "transition block max-w-lg md:mt-24 mx-4" : "transition hidden"}>
                     <h1 className="text-white font-bold text-xl">Software Developer Associate</h1>
                     <h2 className="text-lg py-2 text-lightGray">June 2022 - Present</h2>
                     <p className="py-2 text-white">Eu adipisicing veniam sint ex. Esse sit laboris magna id sunt anim sit incididunt consectetur est. Eu irure nulla labore dolor. Consequat aute tempor ullamco commodo dolor enim dolore proident duis tempor irure exercitation velit. Proident officia magna pariatur eu nisi quis sint est amet laborum nisi eiusmod. Non reprehenderit est aute consectetur ex esse consequat amet quis.</p>
                 </div>
-                <div className={openTab === 2 ? "transition block max-w-lg my-24 mx-4" : "transition hidden"}>
+                <div className={openTab === 2 ? "transition block max-w-lg md:mt-24 mx-4" : "transition hidden"}>
                     <h1 className="text-white font-bold text-xl">Undergraduate Researcher</h1>
                     <h2 className="text-lg py-2 text-lightGray">January 2023 - Present</h2>
                     <ul className="py-2 list-disc list-inside text-white">

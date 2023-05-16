@@ -3,6 +3,12 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'symbiota': "url('../src/static/images/symbiota.png')",
+      },
+      rotate: {
+        '30': '30deg',
+      },
       screens: {
         sm: '480px',
         md: '768px',

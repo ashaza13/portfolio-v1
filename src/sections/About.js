@@ -1,5 +1,5 @@
 import React from "react";
-import ashaz from "../static/ashaz.jpg";
+import ashaz from "../static/images/ashaz.jpg";
 
 const About = () => {
     // const targets = document.querySelectorAll(".js-show-on-scroll");
@@ -61,7 +61,7 @@ const About = () => {
                     </ul>
                 </div>
                 <div>
-                    <img src={ashaz} alt="ashaz" className="mx-auto my-10 md:ml-6 w-72 rounded-md drop-shadow-lg transition hover:-translate-x-2 hover:-translate-y-2" />
+                    <img src={ashaz} alt="ashaz" className="w-72 md:max-w-sm mx-auto my-10 md:ml-6 rounded-md drop-shadow-lg transition hover:-translate-x-2 hover:-translate-y-2" />
                 </div>
             </div>
         </section>
