@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Fade from 'react-reveal/Fade';
 
 const Experience = () => {
     const [openTab, setOpenTab] = useState(1);
 
     return (
         <section id="experience">
-            <Fade bottom >
                 <div className="flex flex-col md:flex-row justify-center mx-4 py-20 lg:py-28">
                     <div className="max-w-lg my-10 text-left">
                         <div className="relative flex items-center">
@@ -56,7 +54,6 @@ const Experience = () => {
                         </ul>
                     </div>
                 </div>
-            </Fade>
         </section>
     )
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import ashaz from "../static/images/ashaz.jpg";
-import Fade from 'react-reveal/Fade';
 
 const About = () => {
 
@@ -9,12 +8,10 @@ const About = () => {
             <div className="md:flex justify-center mx-4 pt-40 pb-12 lg:py-28">
                 <div className="max-w-lg text-left">
                     <div className="relative flex items-center">
-                        <Fade bottom>
 
-                            <p className="text-orange-600 font-bold text-2xl mr-2">01.</p>
-                            <h1 className="mr-4 text-white font-bold text-2xl">About Me</h1>
-                            <div className="max-w-sm flex-grow border-t-2 border-slate"></div>
-                        </Fade>
+                        <p className="text-orange-600 font-bold text-2xl mr-2">01.</p>
+                        <h1 className="mr-4 text-white font-bold text-2xl">About Me</h1>
+                        <div className="max-w-sm flex-grow border-t-2 border-slate"></div>
                     </div>
                     <p className="text-white pt-4">Hello! I am currently a student at Virginia Polytechnic Institute and State University pursuing my undergraduate degree in Computer Science. My interest in Computer Science started as child when I was exposed to Wordpress and created a website for a science fair.</p>
                     <p className="text-white py-4">I am very passionate about Computer Science.
