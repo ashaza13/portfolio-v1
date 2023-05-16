@@ -1,12 +1,13 @@
 import React from "react";
 import { useGlitch } from "react-powerglitch";
+import Fade from 'react-reveal/Fade';
 
 const Contact = () => {
     const glitchButton = useGlitch({ playMode: "hover" });
 
     return (
         <section id="contact">
-            <div>
+            <Fade bottom>
                 <div className="flex justify-center py-0 mx-4 lg:py-28">
                     <div className="max-w-5xl my-10 text-center">
                         <div className="flex justify-center items-center">
@@ -19,10 +20,10 @@ const Contact = () => {
                                 I am actively searching for internship and full-time opportunities after my graduation in December 2023.
                             </p>
                         </div>
-                        <a href="https://github.com/ashaza13" target="_blank"><button ref={glitchButton.ref} className="bg-white drop-shadow-lg text-black center px-8 py-2 mt-8 transition hover:bg-black hover:text-white">Contact Me</button></a>
+                        <a href="mailto: ahmed.ashaz9@gmail.com" target="_blank"><button ref={glitchButton.ref} className="bg-white drop-shadow-lg text-black center px-8 py-2 mt-8 transition hover:bg-black hover:text-white">Contact Me</button></a>
                     </div>
                 </div>
-            </div>
+            </Fade>
         </section>
     );
 };

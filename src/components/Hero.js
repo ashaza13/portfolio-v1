@@ -8,7 +8,7 @@ const Hero = () => {
 
     return (
 
-        <div className="flex justify-center mx-16 py-44 md:py-56">
+        <div className="flex justify-center mx-16 py-44 md:py-60">
             <div className="max-w-lg text-center">
                 <p className="text-white text-left py-2 animate-fadeInUp">Hi, my name is</p>
                 <p ref={glitch.ref} className="text-4xl border-r-4 border-r-white animate-typing overflow-hidden whitespace-nowrap text-white md:text-7xl text-left">ASHAZ AHMED</p>
