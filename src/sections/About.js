@@ -30,7 +30,7 @@ const About = () => {
 
     return (
         <section id="about">
-            <div className="flex justify-center py-28 sm:py-28 lg:py-28">
+            <div className="md:flex justify-center mx-4 pt-40 pb-12 lg:py-28">
                 <div className="max-w-lg text-left">
                     <div className="relative flex items-center">
                         <p className="text-orange-600 font-bold text-2xl mr-2">01.</p>
@@ -61,7 +61,7 @@ const About = () => {
                     </ul>
                 </div>
                 <div>
-                    <img src={ashaz} alt="ashaz" className="my-10 ml-6 w-72 rounded-md drop-shadow-lg transition hover:-translate-x-2 hover:-translate-y-2" />
+                    <img src={ashaz} alt="ashaz" className="mx-auto my-10 md:ml-6 w-72 rounded-md drop-shadow-lg transition hover:-translate-x-2 hover:-translate-y-2" />
                 </div>
             </div>
         </section>

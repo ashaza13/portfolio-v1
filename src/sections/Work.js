@@ -6,7 +6,7 @@ import CardRight from "../components/CardRight";
 const Work = () => {
     return (
         <section id="work">
-            <div className="flex justify-center py-28 sm:py-28 lg:py-28">
+            <div className="flex justify-center py-12 mx-4 lg:py-28">
                 <div className="max-w-5xl my-10 text-left">
                     <div className="relative flex items-center">
                         <p className="text-orange-600 font-bold text-2xl mr-2">03. </p>

@@ -5,7 +5,7 @@ const Experience = () => {
 
     return (
         <section id="experience">
-            <div className="flex justify-center py-28 sm:py-28 lg:py-28">
+            <div className="flex flex-col md:flex-row justify-center mx-4 py-20 lg:py-28">
                 <div className="max-w-lg my-10 text-left">
                     <div className="relative flex items-center">
                         <p className="text-orange-600 font-bold text-2xl mr-2">02. </p>
@@ -23,7 +23,7 @@ const Experience = () => {
                         </ul>
                     </div>
                 </div>
-                <div className={openTab === 1 ? "transition block max-w-lg my-24 mx-4" : "transition hidden"}>
+                <div className={openTab === 1 ? "transition block max-w-lg md:my-24 mx-4" : "transition hidden"}>
                     <h1 className="text-white font-bold text-xl">Software Developer Associate</h1>
                     <h2 className="text-lg py-2 text-lightGray">June 2022 - Present</h2>
                     <p className="py-2 text-white">Eu adipisicing veniam sint ex. Esse sit laboris magna id sunt anim sit incididunt consectetur est. Eu irure nulla labore dolor. Consequat aute tempor ullamco commodo dolor enim dolore proident duis tempor irure exercitation velit. Proident officia magna pariatur eu nisi quis sint est amet laborum nisi eiusmod. Non reprehenderit est aute consectetur ex esse consequat amet quis.</p>
