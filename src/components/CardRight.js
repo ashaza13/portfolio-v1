@@ -1,5 +1,5 @@
 import React from "react";
-import symbiota from "../static/images/symbiota.png";
+import chase from "../static/images/chase.png";
 import { FiGithub } from "react-icons/fi";
 
 
@@ -8,7 +8,7 @@ const cardRight = ({ name, description, technologies, link }) => {
         <div className="wrap w-full mx-auto mb-12 md:my-28">
             <div className="md:grid md:grid-cols-12 md:gap-4">
                 <div className="row-span-full col-start-5 col-span-10 self-center rounded-md transition duration-500 opacity-50 hover:opacity-100 z-0">
-                    <a href={link} target="_blank"><img className="aspect-square md:aspect-auto object-cover rounded-md drop-shadow-lg" src={symbiota} alt="" /></a>
+                    <a href={link} target="_blank"><img className="aspect-square md:aspect-auto object-cover rounded-md drop-shadow-lg" src={chase} alt="" /></a>
                 </div>
                 <div className="row-span-full col-start-1 col-span-6 self-center p-1 text-left z-10">
                     <p className="text-orange-600 text-l">Featured Project</p>

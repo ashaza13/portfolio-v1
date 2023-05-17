@@ -4,9 +4,9 @@ import CardRight from "../components/CardRight";
 import Card from "../components/Card";
 
 const projects = [
-    { name: "Symbiota", description: "A web application designed to educated individuals on effective recycling methods. Search for common items and determine if it can be recycled at your local recycling center.", technologies: ["AWS Amplify", "ReactJS", "GraphQL", "NodeJS"], link: "https://github.com/ashaza13/symbiota-client" },
-    { name: "Traffic Light Scenario", description: "A scenario to simulate an autonomous vehicle on a long curved road with 3 different traffic lights. The autonomous vehicle is able to detect the change in color of the traffic light and react accordingly. This scenario is designed with MATLAB's Driving Scenario Designer tool.", technologies: ["MATLAB", "TensorFlow", "Sensor Fusion"], link: "" },
-    { name: "Healthy", description: "A full-stack iOS application that allows users to count calories and find recipes to live an overall healthier lifestyle.", technologies: ["Swift", "Apple Health Kit", "UIKit", "Google Firebase"], link: "" },
+    { name: "Symbiota", description: "A web application designed to educated individuals on effective recycling methods. Search for common items and determine if it can be recycled at your local recycling center.", technologies: ["AWS Amplify", "ReactJS", "GraphQL", "NodeJS"], link: "https://github.com/ashaza13/symbiota-client", imageUrl: "../static/images/symbiota.png" },
+    { name: "Traffic Light Scenario", description: "A scenario to simulate an autonomous vehicle on a long curved road with 3 different traffic lights. The autonomous vehicle is able to detect the change in color of the traffic light and react accordingly. This scenario is designed with MATLAB's Driving Scenario Designer tool.", technologies: ["MATLAB", "TensorFlow", "Sensor Fusion"], link: "https://github.com/ashaza13/MATLAB-Traffic-Light-Simulation", imageUrl: "../static/images/chase.png" },
+    { name: "Healthy", description: "A full-stack iOS application that allows users to count calories and find recipes to live an overall healthier lifestyle.", technologies: ["Swift", "Apple Health Kit", "UIKit", "Google Firebase"], link: "", imageUrl: "../static/images/firebase.png" },
 ];
 
 const Work = () => {
@@ -27,14 +27,16 @@ const Work = () => {
                                         name={project.name}
                                         description={project.description}
                                         technologies={project.technologies}
-                                        link={project.link} />
+                                        link={project.link} 
+                                        imageUrl={project.imageUrl} />
                                 ) : (
                                     <CardRight
                                         key={i}
                                         name={project.name}
                                         description={project.description}
                                         technologies={project.technologies}
-                                        link={project.link} />
+                                        link={project.link}
+                                        imageUrl={project.imageUrl} />
                                 )
 
                             ))}

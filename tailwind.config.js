@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'symbiota': "url('../src/static/images/symbiota.png')",
+        'matlab': "url('../src/static/images/chase.png')",
       },
       rotate: {
         '30': '30deg',
