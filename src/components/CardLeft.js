@@ -1,5 +1,5 @@
 import React from "react";
-import symbiota from "../static/images/symbiota.png";
+import symbiota from "../static/images/symbiotamap.png";
 import { FiGithub } from "react-icons/fi";
 
 

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const Experience = () => {
     const [openTab, setOpenTab] = useState(1);
 
     return (
         <section id="experience">
+            <motion.div
+                initial={{ opacity: 0, y: "100%" }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, type: "tween" }}
+            >
                 <div className="flex flex-col md:flex-row justify-center mx-4 py-20 lg:py-28">
                     <div className="max-w-lg my-10 text-left">
                         <div className="relative flex items-center">
@@ -54,6 +61,7 @@ const Experience = () => {
                         </ul>
                     </div>
                 </div>
+            </motion.div>
         </section>
     )
 };
