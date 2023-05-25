@@ -4,9 +4,9 @@ import CardRight from "../components/CardRight";
 import Card from "../components/Card";
 
 const projects = [
-    { name: "Symbiota", description: "A web application designed to educate individuals on effective recycling methods. Search for common items and determine if it can be recycled at your local recycling center.", technologies: ["AWS Amplify/Lambda", "ReactJS", "REST API", "NodeJS"], link: "https://github.com/ashaza13/symbiota-client", imageUrl: "../static/images/symbiota.png" },
-    { name: "Traffic Light Scenario", description: "A scenario to simulate an autonomous vehicle on a long curved road with 3 different traffic lights. The autonomous vehicle is able to detect the change in color of the traffic light and react accordingly.", technologies: ["MATLAB", "TensorFlow", "Sensor Fusion"], link: "https://github.com/ashaza13/MATLAB-Traffic-Light-Simulation", imageUrl: "../static/images/chase.png" },
-    { name: "Healthy", description: "A full-stack iOS application that allows users to count calories and find recipes to live an overall healthier lifestyle.", technologies: ["Swift", "Apple Health Kit", "UIKit", "Google Firebase"], link: "", imageUrl: "../static/images/firebase.png" },
+    { name: "Symbiota", description: "A web application designed to educate individuals on effective recycling methods. Search for common items and determine if it can be recycled at your local recycling center.", technologies: ["AWS Amplify/Lambda", "ReactJS", "REST API", "NodeJS"], link: "https://github.com/ashaza13/symbiota-client", imageUrl: "../static/images/symbiota.png", externalURL: "https://main.d2sgk48knqno1u.amplifyapp.com/" },
+    { name: "Traffic Light Scenario", description: "A scenario to simulate an autonomous vehicle on a long curved road with 3 different traffic lights. The autonomous vehicle is able to detect the change in color of the traffic light and react accordingly.", technologies: ["MATLAB", "TensorFlow", "Sensor Fusion"], link: "https://github.com/ashaza13/MATLAB-Traffic-Light-Simulation", imageUrl: "../static/images/chase.png", externalURL:"" },
+    { name: "Healthy", description: "A full-stack iOS application that allows users to count calories and find recipes to live an overall healthier lifestyle.", technologies: ["Swift", "Apple Health Kit", "UIKit", "Google Firebase"], link: "", imageUrl: "../static/images/firebase.png", externalURL:"" },
 ];
 
 const Work = () => {
@@ -28,7 +28,8 @@ const Work = () => {
                                     description={project.description}
                                     technologies={project.technologies}
                                     link={project.link}
-                                    imageUrl={project.imageUrl} />
+                                    imageUrl={project.imageUrl}
+                                    externalURL={project.externalURL} />
                             ) : (
                                 <CardRight
                                     key={i}
@@ -48,7 +49,8 @@ const Work = () => {
                                 name={project.name}
                                 description={project.description}
                                 technologies={project.technologies}
-                                link={project.link} />
+                                link={project.link}
+                                externalURL={project.externalURL} />
                         ))}
                     </div>
                 </div>

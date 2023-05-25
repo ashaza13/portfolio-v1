@@ -1,9 +1,9 @@
 import React from "react";
 import symbiota from "../static/images/symbiotamap.png";
-import { FiGithub } from "react-icons/fi";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 
-const cardLeft = ({ name, description, technologies, link }) => {
+const cardLeft = ({ name, description, technologies, link, externalURL }) => {
     return (
         <div className="wrap w-full mx-auto my-8 md:my-12">
             <div className="md:grid md:grid-cols-12 md:gap-4">
@@ -21,9 +21,10 @@ const cardLeft = ({ name, description, technologies, link }) => {
                             </li>
                         ))}
                     </ul>
-                    <div className="text-white">
-                        <a href={link} target="_blank" className="transition duration-500 hover:text-orange-600"><FiGithub className="text-xl md:float-right" /></a>
-                    </div>
+                    <ul className="flex items-center text-white md:justify-end">
+                        <li className="transition duration-500 pr-8 hover:text-orange-600"><a href={link} target="_blank" rel="norefferer"><FiGithub className="text-xl float-left" /></a></li>
+                        <li className="transition duration-500 hover:text-orange-600"><a href={externalURL} target="_blank" rel="norefferer"><FiExternalLink className="text-xl float-left" /></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
