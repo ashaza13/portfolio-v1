@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useGlitch } from "react-powerglitch";
-import Ashaz from "../static/Ashaz.pdf";
+import Ashaz from "../static/AshazAhmed.pdf";
 import { HashLink } from "react-router-hash-link";
 
 
