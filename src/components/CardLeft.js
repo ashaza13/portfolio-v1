@@ -21,8 +21,10 @@ const cardLeft = ({ name, description, technologies, link, image, externalURL })
                         ))}
                     </ul>
                     <ul className="flex items-center text-white md:justify-end">
-                        <li className="transition duration-500 pr-8 hover:text-orange-600"><a href={link} target="_blank" rel="norefferer"><FiGithub className="text-xl float-left" /></a></li>
-                        <li className="transition duration-500 hover:text-orange-600"><a href={externalURL} target="_blank" rel="norefferer"><FiExternalLink className="text-xl float-left" /></a></li>
+                        <li className={`transition duration-500 hover:text-orange-600 ${externalURL.length > 0 ? 'pr-8' : 'pr-0'}`}><a href={link} target="_blank" rel="norefferer"><FiGithub className="text-xl float-left" /></a></li>
+                        {externalURL.length > 0 &&
+                            <li><a href={externalURL} className="transition duration-500 hover:text-orange-600" target="_blank" rel="norefferer"><FiExternalLink className="text-xl float-left" /></a></li>
+                        }
                     </ul>
                 </div>
             </div>

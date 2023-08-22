@@ -26,7 +26,6 @@ const cardRight = ({ name, description, technologies, link, image, externalURL }
                             {externalURL.length > 0 && 
                                 <li><a href={externalURL} className="transition duration-500 hover:text-orange-600" target="_blank" rel="norefferer"><FiExternalLink className="text-xl float-left" /></a></li> 
                             }
-                            
                         </ul>
                     </div>
 
