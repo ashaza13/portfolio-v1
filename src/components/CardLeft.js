@@ -1,14 +1,13 @@
 import React from "react";
-import symbiota from "../static/images/symbiotamap.png";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 
-const cardLeft = ({ name, description, technologies, link, externalURL }) => {
+const cardLeft = ({ name, description, technologies, link, image, externalURL }) => {
     return (
         <div className="wrap w-full mx-auto my-8 md:my-12">
             <div className="md:grid md:grid-cols-12 md:gap-4">
                 <div className="md:row-span-full md:col-start-1 md:col-span-7 md:self-center md:rounded-md md:transition md:duration-500 opacity-50 md:hover:opacity-100 md:z-0 md:flex">
-                    <a href={link} target="_blank"><img className="aspect-square md:aspect-auto object-cover rounded-md drop-shadow-lg" src={symbiota} alt="" /></a>
+                    <a href={link} target="_blank"><img className="aspect-square md:aspect-auto object-cover rounded-md drop-shadow-lg" src={image} alt="" /></a>
                 </div>
                 <div className="row-span-full col-span-6 col-end-13 self-center p-1 md:text-right z-10">
                     <p className="text-orange-600 text-l">Featured Project</p>

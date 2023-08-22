@@ -1,14 +1,13 @@
 import React from "react";
-import { splices } from "../static/images";
-import { FiGithub } from "react-icons/fi";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 
-const cardRight = ({ name, description, technologies, link, image }) => {
+const cardRight = ({ name, description, technologies, link, image, externalURL }) => {
     return (
         <div className="wrap w-full mx-auto mb-12 md:my-28">
             <div className="md:grid md:grid-cols-12 md:gap-4">
                 <div className="row-span-full col-start-5 col-span-10 self-center rounded-md transition duration-500 opacity-50 hover:opacity-100 z-0">
-                    <a href={link} target="_blank"><img className="aspect-square md:aspect-auto object-cover rounded-md drop-shadow-lg" src={splices} alt="" /></a>
+                    <a href={externalURL} target="_blank"><img className="aspect-square md:aspect-auto object-cover rounded-md drop-shadow-lg" src={image} alt="" /></a>
                 </div>
                 <div className="row-span-full col-start-1 col-span-6 self-center p-1 text-left z-10">
                     <p className="text-orange-600 text-l">Featured Project</p>
@@ -22,7 +21,13 @@ const cardRight = ({ name, description, technologies, link, image }) => {
                         ))}
                     </ul>
                     <div className="text-white">
-                        <a href="#" className="transition duration-500 hover:text-orange-600"><FiGithub className="text-xl float-left" /></a>
+                        <ul className="flex items-center text-white md:justify-start">
+                            <li><a href="#" className={`transition duration-500 hover:text-orange-600 ${externalURL.length > 0 ? 'pr-8' : 'pr-0'}`}><FiGithub className="text-xl float-left" /></a></li> 
+                            {externalURL.length > 0 && 
+                                <li><a href={externalURL} className="transition duration-500 hover:text-orange-600" target="_blank" rel="norefferer"><FiExternalLink className="text-xl float-left" /></a></li> 
+                            }
+                            
+                        </ul>
                     </div>
 
                 </div>
