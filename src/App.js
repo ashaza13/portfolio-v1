@@ -5,6 +5,7 @@ import Experience from './sections/Experience.js';
 import Work from './sections/Work.js';
 import Contact from './sections/Contact.js';
 import Footer from './components/Footer.js';
+import Projects from './sections/Projects.js';
 import { BrowserRouter } from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <About />
           <Experience />
           <Work />
+          <Projects />
           <Contact />
           <Footer />
       </div>

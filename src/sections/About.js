@@ -21,10 +21,10 @@ const About = () => {
                             <h1 className="mr-4 text-white font-bold text-2xl">About Me</h1>
                             <div className="max-w-sm flex-grow border-t-2 border-slate"></div>
                         </div>
-                        <p className="text-white pt-4">Hello! I am currently a student at Virginia Polytechnic Institute and State University pursuing my undergraduate degree in Computer Science. My interest in Computer Science started as child when I was exposed to Wordpress and created a website for a science fair.</p>
+                        <p className="text-white pt-4">Hello! I am currently an incoming Software Engineer Analyst at Accenture Federal Services. My interest in Computer Science started as child when I was exposed to Wordpress and created a website for a science fair.</p>
                         <p className="text-white py-4">I am very passionate about Computer Science.
                             I have worked on and continue to work on many projects to expand my knowledge.
-                            Recently, I joined the&nbsp;
+                            At Virginia Tech, I joined the&nbsp;
                             <a href="https://eng.vt.edu/academics/student-teams/hevt.html" target="_blank" className="group text-orange-600 transition duration-300">
                                 Hokie Electric Vehicle Team.
                                 <span className="inline-block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-orange-600"></span>

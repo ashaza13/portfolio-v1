@@ -15,7 +15,7 @@ const Contact = () => {
                         <h1 className="text-white font-bold text-4xl py-4">Let's get in touch</h1>
                         <div className="block max-w-lg text-white">
                             <p>
-                                I am actively searching for internship and full-time opportunities after my graduation in December 2023.
+                                I am not currently looking for any new opportunities, but my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                             </p>
                         </div>
                         <a href="mailto: ahmed.ashaz9@gmail.com" target="_blank"><button ref={glitchButton.ref} className="bg-white drop-shadow-lg text-black center px-8 py-2 mt-8 transition hover:bg-black hover:text-white">Contact Me</button></a>

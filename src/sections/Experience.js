@@ -31,8 +31,8 @@ const Experience = () => {
                         </div>
                     </div>
                     <div className={openTab === 1 ? "transition block max-w-lg md:mt-24 mx-4" : "transition hidden"}>
-                        <h1 className="text-white font-bold text-xl">Software Developer Associate</h1>
-                        <h2 className="text-lg py-2 text-lightGray">June 2022 - Present</h2>
+                        <h1 className="text-white font-bold text-xl">Software Developer Internship</h1>
+                        <h2 className="text-lg py-2 text-lightGray">June 2022 - August 2023</h2>
                         <ul className="py-2 list-disc list-inside text-white">
                             <li className="py-1">
                                 Worked on the ISEE contract with the DIA concerning development of infrastructure as well as identity, credential, and access management (ICAM)
@@ -47,16 +47,16 @@ const Experience = () => {
                     </div>
                     <div className={openTab === 2 ? "transition block max-w-lg md:mt-24 mx-4" : "transition hidden"}>
                         <h1 className="text-white font-bold text-xl">Undergraduate Researcher</h1>
-                        <h2 className="text-lg py-2 text-lightGray">January 2023 - Present</h2>
+                        <h2 className="text-lg py-2 text-lightGray">January 2023 - January 2024</h2>
                         <ul className="py-2 list-disc list-inside text-white">
                             <li className="py-1">
-                                Conducting research for the electric vehicle EcoCar 4-year design competition sponsored by General Electric
+                                Conducted research for the electric vehicle EcoCar 4-year design competition sponsored by General Electric
                             </li>
                             <li className="py-1">
-                                Designing and researching different connected and automated vehicle systems (CAVs) for the Cadillac Lyric to improve overall energy efficiency
+                                Designed and researched different connected and automated vehicle systems (CAVs) for the Cadillac Lyric to improve overall energy efficiency
                             </li>
                             <li className="py-1">
-                                Working with tools and languages such as Python, Sensor Fusion, Simulink, and MATLAB
+                                Worked with tools and languages such as Python, Sensor Fusion, Simulink, and MATLAB
                             </li>
                         </ul>
                     </div>
