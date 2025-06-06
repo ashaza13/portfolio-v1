@@ -45,60 +45,91 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience">
+        <section id="experience" className="bg-black py-20 lg:py-32">
             <motion.div
-                initial={{ opacity: 0, y: "100%" }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, type: "tween" }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, type: "tween" }}
             >
-                <div className="flex flex-col md:flex-row justify-center mx-4 py-20 lg:py-28">
-                    <div className="max-w-lg my-10 text-left">
-                        <div className="relative flex items-center">
-                            <p className="text-orange-600 font-bold text-2xl mr-2">02. </p>
-                            <h1 className="mr-4 text-white font-bold text-2xl">Where I've Worked</h1>
-                            <div className="max-w-sm flex-grow border-t-2 border-slate"></div>
-                        </div>
-                        <div>
-                            <ul className="mt-6 text-lightGray">
+                <div className="mx-4 max-w-7xl mx-auto">
+                    {/* Section Header */}
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Where I've Worked</h2>
+                        <div className="w-24 h-0.5 bg-gray-600 mx-auto"></div>
+                    </div>
+
+                    <div className="flex flex-col lg:flex-row gap-8">
+                        {/* Company Tabs */}
+                        <div className="lg:w-1/3">
+                            <ul className="space-y-2">
                                 {experiences.map((exp) => (
-                                    <li 
-                                        key={exp.id}
-                                        className={openTab === exp.id ? 
-                                            "justify-center border-l-2 px-2 py-4 transition duration-500 text-orange-600 bg-slate border-orange-600" : 
-                                            "justify-center border-l-2 px-2 py-4 transition duration-500 hover:bg-slate"
-                                        }
-                                    >
-                                        <a 
-                                            href="#" 
-                                            className="transition duration-500 hover:text-orange-600" 
-                                            onClick={e => { e.preventDefault(); setOpenTab(exp.id); }}
+                                    <li key={exp.id}>
+                                        <button 
+                                            className={`w-full text-left px-4 py-3 rounded-lg border transition-all duration-500 ease-in-out transform ${
+                                                openTab === exp.id 
+                                                    ? "bg-gray-800 border-gray-700 text-white scale-105 shadow-lg" 
+                                                    : "bg-gray-900/30 border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-102"
+                                            }`}
+                                            onClick={() => setOpenTab(exp.id)}
                                         >
-                                            {exp.company}
-                                        </a>
+                                            <div className="font-medium">{exp.company}</div>
+                                            <div className="text-sm opacity-75">{exp.position}</div>
+                                        </button>
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+                        
+                        {/* Experience Content with smooth transitions */}
+                        <div className="lg:w-2/3 relative min-h-[400px]">
+                            {experiences.map((exp) => (
+                                <motion.div 
+                                    key={exp.id}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ 
+                                        opacity: openTab === exp.id ? 1 : 0,
+                                        x: openTab === exp.id ? 0 : 20
+                                    }}
+                                    transition={{ 
+                                        duration: 0.4, 
+                                        ease: "easeInOut",
+                                        delay: openTab === exp.id ? 0.1 : 0
+                                    }}
+                                    className={`absolute inset-0 ${
+                                        openTab === exp.id ? "pointer-events-auto" : "pointer-events-none"
+                                    }`}
+                                >
+                                    <div className="bg-gray-900/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-2xl font-semibold text-white mb-2">{exp.position}</h3>
+                                        <p className="text-lg text-gray-300 mb-1">{exp.duration}</p>
+                                        <p className="text-md text-gray-400 mb-6">{exp.location}</p>
+                                        
+                                        <ul className="space-y-3">
+                                            {exp.responsibilities.map((responsibility, index) => (
+                                                <motion.li 
+                                                    key={index} 
+                                                    className="flex items-start"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ 
+                                                        opacity: openTab === exp.id ? 1 : 0,
+                                                        y: openTab === exp.id ? 0 : 10
+                                                    }}
+                                                    transition={{ 
+                                                        duration: 0.3,
+                                                        delay: openTab === exp.id ? 0.2 + (index * 0.1) : 0
+                                                    }}
+                                                >
+                                                    <span className="text-gray-500 mr-3 mt-2">▶</span>
+                                                    <span className="text-gray-400 leading-relaxed">{responsibility}</span>
+                                                </motion.li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
-                    
-                    {experiences.map((exp) => (
-                        <div 
-                            key={exp.id}
-                            className={openTab === exp.id ? "transition block max-w-lg md:mt-24 mx-4" : "transition hidden"}
-                        >
-                            <h1 className="text-white font-bold text-xl">{exp.position}</h1>
-                            <h2 className="text-lg py-2 text-lightGray">{exp.duration}</h2>
-                            <h3 className="text-md text-orange-600 mb-2">{exp.location}</h3>
-                            <ul className="py-2 list-disc list-inside text-white">
-                                {exp.responsibilities.map((responsibility, index) => (
-                                    <li key={index} className="py-1">
-                                        {responsibility}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
                 </div>
             </motion.div>
         </section>

@@ -5,176 +5,284 @@ const TechnologyWeb = ({ technologies }) => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [positions, setPositions] = useState([]);
     const [currentPositions, setCurrentPositions] = useState([]);
-    const [draggedIndex, setDraggedIndex] = useState(null);
-    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-    const [isAnimating, setIsAnimating] = useState(false);
     const containerRef = useRef(null);
 
-    // Generate positions for technologies in a more organic web pattern
+    // Generate positions based on intersection points but without storing the lines
     useEffect(() => {
-        const centerX = 300;
-        const centerY = 300;
-        const baseRadius = 180;
+        const containerWidth = 1200;
+        const containerHeight = 800;
+        const padding = 80;
         
-        const newPositions = technologies.map((_, index) => {
-            const angle = (index / technologies.length) * 2 * Math.PI;
-            // Add some randomness to make it more organic
-            const radiusVariation = baseRadius + (Math.random() - 0.5) * 60;
-            const angleVariation = angle + (Math.random() - 0.5) * 0.3;
+        // Generate intersection points without storing the background lines
+        const intersectionPoints = [];
+        
+        // Create potential intersection points from a grid-like pattern with randomness
+        const horizontalLines = 6;
+        const verticalLines = 8;
+        
+        // Generate horizontal line points
+        const horizontalPoints = [];
+        for (let i = 0; i < horizontalLines; i++) {
+            const y = padding + (i * (containerHeight - 2 * padding) / (horizontalLines - 1));
+            const linePoints = [];
+            for (let x = padding; x <= containerWidth - padding; x += 150) {
+                const offsetY = (Math.random() - 0.5) * 80;
+                const offsetX = (Math.random() - 0.5) * 40;
+                linePoints.push({
+                    x: Math.max(padding, Math.min(containerWidth - padding, x + offsetX)),
+                    y: Math.max(padding, Math.min(containerHeight - padding, y + offsetY))
+                });
+            }
+            horizontalPoints.push(...linePoints);
+        }
+        
+        // Generate vertical line points
+        const verticalPoints = [];
+        for (let i = 0; i < verticalLines; i++) {
+            const x = padding + (i * (containerWidth - 2 * padding) / (verticalLines - 1));
+            const linePoints = [];
+            for (let y = padding; y <= containerHeight - padding; y += 120) {
+                const offsetX = (Math.random() - 0.5) * 60;
+                const offsetY = (Math.random() - 0.5) * 30;
+                linePoints.push({
+                    x: Math.max(padding, Math.min(containerWidth - padding, x + offsetX)),
+                    y: Math.max(padding, Math.min(containerHeight - padding, y + offsetY))
+                });
+            }
+            verticalPoints.push(...linePoints);
+        }
+        
+        // Add some diagonal points
+        const diagonalPoints = [];
+        for (let i = 0; i < 20; i++) {
+            diagonalPoints.push({
+                x: padding + Math.random() * (containerWidth - 2 * padding),
+                y: padding + Math.random() * (containerHeight - 2 * padding)
+            });
+        }
+        
+        const allPoints = [...horizontalPoints, ...verticalPoints, ...diagonalPoints];
+        
+        // Cluster nearby points to create intersection areas
+        const clusters = [];
+        const used = new Set();
+        
+        allPoints.forEach((point, index) => {
+            if (used.has(index)) return;
             
-            const x = centerX + radiusVariation * Math.cos(angleVariation);
-            const y = centerY + radiusVariation * Math.sin(angleVariation);
-            return { x, y };
-        });
-        
-        setPositions(newPositions);
-        setCurrentPositions(newPositions);
-    }, [technologies]);
-
-    // Generate spider web-like connections
-    const generateConnections = () => {
-        const connections = [];
-        const centerX = 300;
-        const centerY = 300;
-        
-        for (let i = 0; i < technologies.length; i++) {
-            if (!currentPositions[i]) continue;
+            const cluster = [point];
+            used.add(index);
             
-            // Connect to center (like spokes of a web)
-            connections.push({
-                from: { x: centerX, y: centerY },
-                to: currentPositions[i],
-                fromIndex: -1, // -1 represents center
-                toIndex: i,
-                type: 'spoke'
+            allPoints.forEach((otherPoint, otherIndex) => {
+                if (used.has(otherIndex)) return;
+                
+                const distance = Math.sqrt(
+                    Math.pow(point.x - otherPoint.x, 2) + 
+                    Math.pow(point.y - otherPoint.y, 2)
+                );
+                
+                if (distance < 60) {
+                    cluster.push(otherPoint);
+                    used.add(otherIndex);
+                }
             });
             
-            // Connect to some nearby nodes (web strands)
-            for (let j = i + 1; j < technologies.length; j++) {
-                if (!currentPositions[j]) continue;
+            if (cluster.length >= 2) {
+                // Calculate center of cluster
+                const centerX = cluster.reduce((sum, p) => sum + p.x, 0) / cluster.length;
+                const centerY = cluster.reduce((sum, p) => sum + p.y, 0) / cluster.length;
+                clusters.push({ x: centerX, y: centerY });
+            }
+        });
+        
+        // Select the best intersection points for our technologies
+        const selectedPositions = [];
+        const shuffledClusters = clusters.sort(() => Math.random() - 0.5);
+        
+        for (let i = 0; i < Math.min(technologies.length, shuffledClusters.length); i++) {
+            selectedPositions.push(shuffledClusters[i]);
+        }
+        
+        // If we need more positions, add some random ones
+        while (selectedPositions.length < technologies.length) {
+            selectedPositions.push({
+                x: padding + Math.random() * (containerWidth - 2 * padding),
+                y: padding + Math.random() * (containerHeight - 2 * padding)
+            });
+        }
+        
+        setPositions(selectedPositions);
+        setCurrentPositions(selectedPositions);
+    }, [technologies]);
+
+    // Update positions based on hover effect
+    useEffect(() => {
+        if (hoveredIndex === null) {
+            setCurrentPositions(positions);
+            return;
+        }
+
+        const hoveredPos = positions[hoveredIndex];
+        if (!hoveredPos) return;
+
+        const newPositions = positions.map((pos, index) => {
+            if (index === hoveredIndex) return pos;
+
+            const distance = Math.sqrt(
+                Math.pow(pos.x - hoveredPos.x, 2) + 
+                Math.pow(pos.y - hoveredPos.y, 2)
+            );
+
+            if (distance < 120) {
+                const angle = Math.atan2(pos.y - hoveredPos.y, pos.x - hoveredPos.x);
+                const pushDistance = 25;
+                return {
+                    x: pos.x + pushDistance * Math.cos(angle),
+                    y: pos.y + pushDistance * Math.sin(angle)
+                };
+            }
+
+            return pos;
+        });
+
+        setCurrentPositions(newPositions);
+    }, [hoveredIndex, positions]);
+
+    // Generate connections between nearby nodes only
+    const generateConnections = () => {
+        const connections = [];
+        const nodeConnections = new Array(currentPositions.length).fill(0); // Track connections per node
+        
+        // First pass: Create a more connected web by connecting to multiple nearby nodes
+        for (let i = 0; i < currentPositions.length; i++) {
+            const distances = [];
+            
+            // Calculate distances to all other nodes
+            for (let j = 0; j < currentPositions.length; j++) {
+                if (i === j) continue;
                 
                 const distance = Math.sqrt(
                     Math.pow(currentPositions[i].x - currentPositions[j].x, 2) + 
                     Math.pow(currentPositions[i].y - currentPositions[j].y, 2)
                 );
                 
-                // Only connect if nodes are reasonably close (creates more realistic web)
-                if (distance < 200 && Math.random() > 0.4) {
+                distances.push({ index: j, distance });
+            }
+            
+            // Sort by distance and connect to closest nodes
+            distances.sort((a, b) => a.distance - b.distance);
+            
+            // Connect to 2-4 closest nodes (creates more intricate web)
+            const connectionsToMake = Math.min(Math.floor(Math.random() * 3) + 2, distances.length);
+            
+            for (let k = 0; k < connectionsToMake; k++) {
+                const targetIndex = distances[k].index;
+                
+                // Check if connection already exists
+                const connectionExists = connections.some(conn => 
+                    (conn.fromIndex === i && conn.toIndex === targetIndex) ||
+                    (conn.fromIndex === targetIndex && conn.toIndex === i)
+                );
+                
+                if (!connectionExists && distances[k].distance < 400) {
                     connections.push({
                         from: currentPositions[i],
-                        to: currentPositions[j],
+                        to: currentPositions[targetIndex],
                         fromIndex: i,
-                        toIndex: j,
-                        type: 'strand'
+                        toIndex: targetIndex,
+                        type: 'node'
                     });
+                    nodeConnections[i]++;
+                    nodeConnections[targetIndex]++;
                 }
             }
         }
+        
+        // Second pass: Add some longer connections for web complexity
+        for (let i = 0; i < currentPositions.length; i++) {
+            // Add 1-2 random longer connections per node
+            const longConnections = Math.floor(Math.random() * 2) + 1;
+            
+            for (let k = 0; k < longConnections; k++) {
+                const randomIndex = Math.floor(Math.random() * currentPositions.length);
+                if (randomIndex === i) continue;
+                
+                const distance = Math.sqrt(
+                    Math.pow(currentPositions[i].x - currentPositions[randomIndex].x, 2) + 
+                    Math.pow(currentPositions[i].y - currentPositions[randomIndex].y, 2)
+                );
+                
+                // Check if connection already exists
+                const connectionExists = connections.some(conn => 
+                    (conn.fromIndex === i && conn.toIndex === randomIndex) ||
+                    (conn.fromIndex === randomIndex && conn.toIndex === i)
+                );
+                
+                if (!connectionExists && distance < 600 && Math.random() > 0.3) {
+                    connections.push({
+                        from: currentPositions[i],
+                        to: currentPositions[randomIndex],
+                        fromIndex: i,
+                        toIndex: randomIndex,
+                        type: 'long'
+                    });
+                    nodeConnections[i]++;
+                    nodeConnections[randomIndex]++;
+                }
+            }
+        }
+        
+        // Third pass: Ensure every node has at least 2 connections for web-like structure
+        for (let i = 0; i < currentPositions.length; i++) {
+            while (nodeConnections[i] < 2) {
+                // Find nodes with fewer connections to balance the network
+                let targetIndex = -1;
+                let minConnections = Infinity;
+                let closestDistance = Infinity;
+                
+                for (let j = 0; j < currentPositions.length; j++) {
+                    if (i === j) continue;
+                    
+                    const distance = Math.sqrt(
+                        Math.pow(currentPositions[i].x - currentPositions[j].x, 2) + 
+                        Math.pow(currentPositions[i].y - currentPositions[j].y, 2)
+                    );
+                    
+                    // Check if connection already exists
+                    const connectionExists = connections.some(conn => 
+                        (conn.fromIndex === i && conn.toIndex === j) ||
+                        (conn.fromIndex === j && conn.toIndex === i)
+                    );
+                    
+                    if (!connectionExists) {
+                        // Prefer nodes with fewer connections and closer distance
+                        if (nodeConnections[j] < minConnections || 
+                            (nodeConnections[j] === minConnections && distance < closestDistance)) {
+                            minConnections = nodeConnections[j];
+                            closestDistance = distance;
+                            targetIndex = j;
+                        }
+                    }
+                }
+                
+                if (targetIndex !== -1) {
+                    connections.push({
+                        from: currentPositions[i],
+                        to: currentPositions[targetIndex],
+                        fromIndex: i,
+                        toIndex: targetIndex,
+                        type: 'node'
+                    });
+                    nodeConnections[i]++;
+                    nodeConnections[targetIndex]++;
+                } else {
+                    break; // No more connections possible
+                }
+            }
+        }
+        
         return connections;
     };
-
-    const handleMouseDown = (e, index) => {
-        e.preventDefault();
-        setDraggedIndex(index);
-        
-        const rect = containerRef.current.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        
-        setDragOffset({
-            x: mouseX - currentPositions[index].x,
-            y: mouseY - currentPositions[index].y
-        });
-    };
-
-    const handleMouseMove = (e) => {
-        if (draggedIndex === null) return;
-        
-        const rect = containerRef.current.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        
-        const newX = mouseX - dragOffset.x;
-        const newY = mouseY - dragOffset.y;
-        
-        // Limit drag distance from original position
-        const originalPos = positions[draggedIndex];
-        const maxDistance = 80;
-        const distance = Math.sqrt(
-            Math.pow(newX - originalPos.x, 2) + Math.pow(newY - originalPos.y, 2)
-        );
-        
-        let finalX = newX;
-        let finalY = newY;
-        
-        if (distance > maxDistance) {
-            const angle = Math.atan2(newY - originalPos.y, newX - originalPos.x);
-            finalX = originalPos.x + maxDistance * Math.cos(angle);
-            finalY = originalPos.y + maxDistance * Math.sin(angle);
-        }
-        
-        setCurrentPositions(prev => {
-            const newPositions = [...prev];
-            newPositions[draggedIndex] = { x: finalX, y: finalY };
-            return newPositions;
-        });
-    };
-
-    const handleMouseUp = () => {
-        if (draggedIndex === null) return;
-        
-        setIsAnimating(true);
-        
-        // Animate back to original position
-        const originalPos = positions[draggedIndex];
-        const currentPos = currentPositions[draggedIndex];
-        
-        const animationDuration = 1500;
-        const startTime = Date.now();
-        
-        const animate = () => {
-            const elapsed = Date.now() - startTime;
-            const progress = Math.min(elapsed / animationDuration, 1);
-            
-            // Elastic easing function for bounce effect
-            const easeOutElastic = (t) => {
-                const c4 = (2 * Math.PI) / 3;
-                return t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
-            };
-            
-            const easedProgress = easeOutElastic(progress);
-            
-            const x = currentPos.x + (originalPos.x - currentPos.x) * easedProgress;
-            const y = currentPos.y + (originalPos.y - currentPos.y) * easedProgress;
-            
-            setCurrentPositions(prev => {
-                const newPositions = [...prev];
-                newPositions[draggedIndex] = { x, y };
-                return newPositions;
-            });
-            
-            if (progress < 1) {
-                requestAnimationFrame(animate);
-            } else {
-                setIsAnimating(false);
-                setDraggedIndex(null);
-            }
-        };
-        
-        requestAnimationFrame(animate);
-    };
-
-    useEffect(() => {
-        if (draggedIndex !== null) {
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-            
-            return () => {
-                document.removeEventListener('mousemove', handleMouseMove);
-                document.removeEventListener('mouseup', handleMouseUp);
-            };
-        }
-    }, [draggedIndex, dragOffset, positions, currentPositions]);
 
     const connections = generateConnections();
 
@@ -183,31 +291,29 @@ const TechnologyWeb = ({ technologies }) => {
             <div 
                 ref={containerRef}
                 className="relative select-none" 
-                style={{ width: '600px', height: '600px' }}
+                style={{ width: '1200px', height: '800px' }}
             >
-                {/* SVG for connection lines */}
+                {/* SVG for connections between nodes only */}
                 <svg 
                     className="absolute inset-0 w-full h-full pointer-events-none"
                     style={{ zIndex: 1 }}
                 >
+                    {/* Render all connections between technology nodes */}
                     {connections.map((connection, index) => {
                         const isHighlighted = hoveredIndex !== null && 
                             (connection.fromIndex === hoveredIndex || connection.toIndex === hoveredIndex);
                         
-                        const isSpoke = connection.type === 'spoke';
-                        
                         return (
                             <line
-                                key={index}
+                                key={`connection-${index}`}
                                 x1={connection.from.x}
                                 y1={connection.from.y}
                                 x2={connection.to.x}
                                 y2={connection.to.y}
-                                stroke={isHighlighted ? "#f97316" : (isSpoke ? "#4b5563" : "#374151")}
-                                strokeWidth={isHighlighted ? "2" : (isSpoke ? "1.5" : "1")}
-                                opacity={isHighlighted ? "0.9" : (isSpoke ? "0.4" : "0.2")}
-                                className="transition-all duration-300"
-                                strokeDasharray={isSpoke ? "none" : "2,2"}
+                                stroke={isHighlighted ? "#f97316" : "#6b7280"}
+                                strokeWidth={isHighlighted ? "3" : "1.5"}
+                                opacity={isHighlighted ? "1" : "0.6"}
+                                className="transition-all duration-1000 ease-out"
                             />
                         );
                     })}
@@ -220,17 +326,15 @@ const TechnologyWeb = ({ technologies }) => {
                     return (
                         <div
                             key={index}
-                            className={`absolute transform -translate-x-1/2 -translate-y-1/2 ${
-                                draggedIndex === index ? 'cursor-grabbing' : 'cursor-grab'
-                            } ${isAnimating && draggedIndex === index ? 'pointer-events-none' : ''}`}
+                            className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 ease-out"
                             style={{
                                 left: currentPositions[index].x,
                                 top: currentPositions[index].y,
-                                zIndex: draggedIndex === index ? 4 : 2
+                                zIndex: hoveredIndex === index ? 4 : 2,
+                                transform: `translate(-50%, -50%) ${hoveredIndex === index ? 'scale(1.1)' : 'scale(1)'}`
                             }}
-                            onMouseEnter={() => !draggedIndex && setHoveredIndex(index)}
-                            onMouseLeave={() => !draggedIndex && setHoveredIndex(null)}
-                            onMouseDown={(e) => handleMouseDown(e, index)}
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
                         >
                             <TechnologySkill
                                 icon={tech.icon}
@@ -240,18 +344,6 @@ const TechnologyWeb = ({ technologies }) => {
                         </div>
                     );
                 })}
-
-                {/* Center node - spider body */}
-                <div 
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-orange-600 rounded-full w-24 h-24 flex items-center justify-center shadow-lg"
-                    style={{
-                        left: 300,
-                        top: 300,
-                        zIndex: 3
-                    }}
-                >
-                    <span className="text-white font-bold text-xs">Technologies</span>
-                </div>
             </div>
         </div>
     );
