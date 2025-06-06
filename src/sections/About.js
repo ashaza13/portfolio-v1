@@ -3,57 +3,72 @@ import ashaz from "../static/images/ashaz.jpg";
 import { motion } from "framer-motion";
 
 const About = () => {
-
     return (
-        <section id="about">
+        <section id="about" className="relative py-20 lg:py-32 bg-black">
+            
             <motion.div
-                initial={{ opacity:0, y: "100%"}}
+                initial={{ opacity:0, y: 50}}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, type: "tween" }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, type: "tween" }}
             >
-
-                <div className="md:flex justify-center mx-4 pt-40 pb-12 lg:py-28">
-                    <div className="max-w-lg text-left">
-                        <div className="relative flex items-center">
-
-                            <p className="text-orange-600 font-bold text-2xl mr-2">01.</p>
-                            <h1 className="mr-4 text-white font-bold text-2xl">About Me</h1>
-                            <div className="max-w-sm flex-grow border-t-2 border-slate"></div>
-                        </div>
-                        <p className="text-white pt-4">Hello! I am currently a student at Virginia Polytechnic Institute and State University pursuing my undergraduate degree in Computer Science. My interest in Computer Science started as child when I was exposed to Wordpress and created a website for a science fair.</p>
-                        <p className="text-white py-4">I am very passionate about Computer Science.
-                            I have worked on and continue to work on many projects to expand my knowledge.
-                            Recently, I joined the&nbsp;
-                            <a href="https://eng.vt.edu/academics/student-teams/hevt.html" target="_blank" className="group text-orange-600 transition duration-300">
-                                Hokie Electric Vehicle Team.
-                                <span className="inline-block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-orange-600"></span>
-                            </a>
-                            &nbsp;I have designed MATLAB simulations utilizing machine learning tools such as TensorFlow.
-                        </p>
-                        <ul className="columns-2 list-disc list-inside py-4 text-white">
-                            <li className="text-white">
-                                Java
-                            </li>
-                            <li className="text-white">
-                                Python
-                            </li>
-                            <li className="text-white">
-                                JavaScript
-                            </li>
-                            <li className="text-white">
-                                ReactJS
-                            </li>
-                            <li className="text-white">
-                                AWS Amplify
-                            </li>
-                            <li className="text-white">
-                                Flask
-                            </li>
-                        </ul>
+                <div className="mx-4 max-w-7xl mx-auto">
+                    {/* Section Header */}
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">About Me</h2>
+                        <div className="w-24 h-0.5 bg-gray-600 mx-auto"></div>
                     </div>
-                    <div>
-                        <img src={ashaz} alt="ashaz" className="w-72 md:max-w-sm mx-auto my-10 md:ml-6 rounded-md drop-shadow-lg transition hover:-translate-x-2 hover:-translate-y-2" />
+
+                    {/* Main Content */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        {/* Left - About Me Text */}
+                        <div className="order-2 lg:order-1">
+                            <div className="bg-gray-900/30 rounded-2xl p-8 border border-gray-800">
+                                <h3 className="text-2xl font-semibold text-white mb-6">
+                                    Software Engineer & Problem Solver
+                                </h3>
+                                
+                                <div className="space-y-4 text-gray-400 leading-relaxed">
+                                    <p>
+                                        Hello! I'm currently a <span className="text-white font-medium">Software Engineer at Accenture</span>, 
+                                        where I develop LLM-powered agents and analytics platforms that support over 14 million users in the public sector.
+                                    </p>
+                                    
+                                    <p>
+                                        My journey in Computer Science began as a child when I was first exposed to WordPress and 
+                                        created a website for a science fair. That spark ignited a passion that has only grown stronger.
+                                    </p>
+                                    
+                                    <p>
+                                        I obtained my degree in <span className="text-white font-medium">Computer Science from Virginia Tech</span> 
+                                        and continue to work on exciting projects that push the boundaries of what's possible with technology.
+                                    </p>
+                                </div>
+
+                                {/* Skills Pills */}
+                                <div className="flex flex-wrap gap-2 mt-6">
+                                    {['JavaScript', 'React', 'Python', 'AI/ML', 'Cloud Computing'].map((skill) => (
+                                        <span 
+                                            key={skill}
+                                            className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded-lg border border-gray-700"
+                                        >
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Right - Picture */}
+                        <div className="order-1 lg:order-2 flex justify-center">
+                            <div className="relative">
+                                <img 
+                                    src={ashaz} 
+                                    alt="Ashaz Ahmed" 
+                                    className="w-80 h-80 object-cover rounded-2xl border border-gray-800" 
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </motion.div>

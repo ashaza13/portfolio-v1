@@ -1,26 +1,52 @@
 import React from "react";
 import { useGlitch } from "react-powerglitch";
+import { motion } from "framer-motion";
 
 const Contact = () => {
     const glitchButton = useGlitch({ playMode: "hover" });
 
     return (
-        <section id="contact">
-                <div className="flex justify-center py-0 mx-4 lg:py-28">
-                    <div className="max-w-5xl my-10 text-center">
-                        <div className="flex justify-center items-center">
-                            <p className="text-orange-600 font-bold text-2xl mr-2">04.</p>
-                            <h1 className="mr-4 text-white font-bold text-2xl">Contact</h1>
+        <section id="contact" className="bg-black py-20 lg:py-32">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, type: "tween" }}
+            >
+                <div className="flex justify-center mx-4">
+                    <div className="max-w-5xl text-center">
+                        {/* Section Header */}
+                        <div className="mb-12">
+                            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Get In Touch</h2>
+                            <div className="w-24 h-0.5 bg-gray-600 mx-auto"></div>
                         </div>
-                        <h1 className="text-white font-bold text-4xl py-4">Let's get in touch</h1>
-                        <div className="block max-w-lg text-white">
-                            <p>
-                                I am actively searching for internship and full-time opportunities after my graduation in December 2023.
-                            </p>
+                        
+                        <div className="mb-8">
+                            <h3 className="text-2xl font-semibold text-white mb-6">
+                                Let's Build Something Amazing Together
+                            </h3>
+                            <div className="max-w-2xl mx-auto">
+                                <p className="text-gray-400 leading-relaxed mb-4">
+                                    I'm currently open to new opportunities and exciting projects. Whether you're looking for a software engineer 
+                                    with AI expertise or want to collaborate on innovative solutions, I'd love to hear from you.
+                                </p>
+                                <p className="text-gray-400 leading-relaxed">
+                                    Feel free to reach out if you have any questions or just want to connect!
+                                </p>
+                            </div>
                         </div>
-                        <a href="mailto: ahmed.ashaz9@gmail.com" target="_blank"><button ref={glitchButton.ref} className="bg-white drop-shadow-lg text-black center px-8 py-2 mt-8 transition hover:bg-black hover:text-white">Contact Me</button></a>
+                        
+                        <a href="mailto:ahmed.ashaz9@gmail.com" target="_blank" rel="noopener noreferrer">
+                            <button 
+                                ref={glitchButton.ref} 
+                                className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300"
+                            >
+                                Contact Me
+                            </button>
+                        </a>
                     </div>
                 </div>
+            </motion.div>
         </section>
     );
 };
