@@ -25,7 +25,7 @@ const MouseFollower = () => {
 
   return (
     <div
-      className={`fixed pointer-events-none z-50 transition-opacity duration-300 ${
+      className={`fixed pointer-events-none z-50 transition-opacity duration-300 hidden lg:block ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       style={{
