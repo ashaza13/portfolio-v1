@@ -45,44 +45,67 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience" className="bg-black py-20 lg:py-32">
+        <section id="experience" className="bg-black py-20 sm:py-24 lg:py-32 xl:py-40">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, type: "tween" }}
             >
-                <div className="mx-4 max-w-7xl mx-auto">
+                <div className="mx-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Where I've Worked</h2>
+                    <div className="text-center mb-16 sm:mb-20 lg:mb-24">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">Where I've Worked</h2>
                         <div className="w-24 h-0.5 bg-gray-600 mx-auto"></div>
                     </div>
 
+                    {/* Main Content */}
                     <div className="flex flex-col lg:flex-row gap-8">
-                        {/* Company Tabs */}
+                        {/* Company Navigation */}
                         <div className="lg:w-1/3">
-                            <ul className="space-y-2">
-                                {experiences.map((exp) => (
-                                    <li key={exp.id}>
+                            {/* Mobile: Horizontal scroll tabs */}
+                            <div className="lg:hidden">
+                                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                    {experiences.map((exp) => (
                                         <button 
-                                            className={`w-full text-left px-4 py-3 rounded-lg border transition-all duration-500 ease-in-out transform ${
+                                            key={exp.id}
+                                            className={`flex-shrink-0 px-4 py-2 rounded-lg border text-sm transition-all duration-300 ${
                                                 openTab === exp.id 
-                                                    ? "bg-gray-800 border-gray-700 text-white scale-105 shadow-lg" 
-                                                    : "bg-gray-900/30 border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-102"
+                                                    ? "bg-gray-800 border-gray-700 text-white" 
+                                                    : "bg-gray-900/30 border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800/50"
                                             }`}
                                             onClick={() => setOpenTab(exp.id)}
                                         >
-                                            <div className="font-medium">{exp.company}</div>
-                                            <div className="text-sm opacity-75">{exp.position}</div>
+                                            {exp.company}
                                         </button>
-                                    </li>
-                                ))}
-                            </ul>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Desktop: Vertical tabs */}
+                            <div className="hidden lg:block">
+                                <ul className="space-y-2">
+                                    {experiences.map((exp) => (
+                                        <li key={exp.id}>
+                                            <button 
+                                                className={`w-full text-left px-4 py-3 rounded-lg border transition-all duration-500 ease-in-out transform ${
+                                                    openTab === exp.id 
+                                                        ? "bg-gray-800 border-gray-700 text-white scale-105 shadow-lg" 
+                                                        : "bg-gray-900/30 border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-102"
+                                                }`}
+                                                onClick={() => setOpenTab(exp.id)}
+                                            >
+                                                <div className="font-medium">{exp.company}</div>
+                                                <div className="text-sm opacity-75">{exp.position}</div>
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                         
-                        {/* Experience Content with smooth transitions */}
-                        <div className="lg:w-2/3 relative min-h-[400px]">
+                        {/* Experience Content */}
+                        <div className="lg:w-2/3 relative min-h-[300px] sm:min-h-[400px]">
                             {experiences.map((exp) => (
                                 <motion.div 
                                     key={exp.id}
@@ -100,12 +123,12 @@ const Experience = () => {
                                         openTab === exp.id ? "pointer-events-auto" : "pointer-events-none"
                                     }`}
                                 >
-                                    <div className="bg-gray-900/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-2xl font-semibold text-white mb-2">{exp.position}</h3>
-                                        <p className="text-lg text-gray-300 mb-1">{exp.duration}</p>
-                                        <p className="text-md text-gray-400 mb-6">{exp.location}</p>
+                                    <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">{exp.position}</h3>
+                                        <p className="text-base sm:text-lg text-gray-300 mb-1">{exp.duration}</p>
+                                        <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">{exp.location}</p>
                                         
-                                        <ul className="space-y-3">
+                                        <ul className="space-y-2 sm:space-y-3">
                                             {exp.responsibilities.map((responsibility, index) => (
                                                 <motion.li 
                                                     key={index} 
@@ -120,8 +143,8 @@ const Experience = () => {
                                                         delay: openTab === exp.id ? 0.2 + (index * 0.1) : 0
                                                     }}
                                                 >
-                                                    <span className="text-gray-500 mr-3 mt-2">▶</span>
-                                                    <span className="text-gray-400 leading-relaxed">{responsibility}</span>
+                                                    <span className="text-gray-500 mr-3 mt-1 sm:mt-2 text-sm">▶</span>
+                                                    <span className="text-sm sm:text-base text-gray-400 leading-relaxed">{responsibility}</span>
                                                 </motion.li>
                                             ))}
                                         </ul>

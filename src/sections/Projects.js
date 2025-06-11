@@ -52,25 +52,25 @@ const projects = [
 
 const Projects = () => {
     return (
-        <section id="work" className="bg-black py-20 lg:py-32">
+        <section id="work" className="bg-black py-20 sm:py-24 lg:py-32 xl:py-40">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, type: "tween" }}
             >
-                <div className="mx-4 max-w-7xl mx-auto">
+                <div className="mx-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Featured Projects</h2>
+                    <div className="text-center mb-16 sm:mb-20 lg:mb-24">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">Featured Projects</h2>
                         <div className="w-24 h-0.5 bg-gray-600 mx-auto mb-6"></div>
-                        <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed px-2">
                             A showcase of my recent work in software development, AI/ML, and mobile applications.
                         </p>
                     </div>
 
                     {/* Projects Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
                         {projects.map((project, index) => (
                             <motion.div 
                                 key={index}
@@ -80,43 +80,43 @@ const Projects = () => {
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 className="group"
                             >
-                                <div className="relative bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-800 hover:border-gray-700 transition-all duration-500 hover:transform hover:scale-105 h-full flex flex-col">
+                                <div className="relative bg-gray-900/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-800 hover:border-gray-700 transition-all duration-500 hover:transform hover:scale-105 h-full flex flex-col">
                                     {/* Project Image */}
                                     {project.imageUrl && (
-                                        <div className="relative overflow-hidden rounded-t-2xl">
+                                        <div className="relative overflow-hidden rounded-t-xl sm:rounded-t-2xl">
                                             <img 
                                                 src={project.imageUrl} 
                                                 alt={project.name}
-                                                className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                                                className="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                                             />
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
                                         </div>
                                     )}
                                     
                                     {/* Project Content */}
-                                    <div className="p-6 flex-1 flex flex-col">
+                                    <div className="p-4 sm:p-6 flex-1 flex flex-col">
                                         {/* Header */}
-                                        <div className="mb-4">
+                                        <div className="mb-3 sm:mb-4">
                                             <div className="flex justify-between items-start mb-2">
-                                                <h3 className="text-xl font-semibold text-white group-hover:text-gray-200 transition-colors duration-300">
+                                                <h3 className="text-lg sm:text-xl font-semibold text-white group-hover:text-gray-200 transition-colors duration-300">
                                                     {project.name}
                                                 </h3>
-                                                <span className="text-sm text-gray-500">{project.duration}</span>
+                                                <span className="text-xs sm:text-sm text-gray-500 ml-2 flex-shrink-0">{project.duration}</span>
                                             </div>
                                         </div>
                                         
                                         {/* Description */}
-                                        <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+                                        <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4 sm:mb-6 flex-1">
                                             {project.description}
                                         </p>
                                         
                                         {/* Technologies */}
-                                        <div className="mb-6">
-                                            <div className="flex flex-wrap gap-2">
+                                        <div className="mb-4 sm:mb-6">
+                                            <div className="flex flex-wrap gap-1.5 sm:gap-2">
                                                 {project.technologies.map((tech, techIndex) => (
                                                     <span 
                                                         key={techIndex}
-                                                        className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded-lg border border-gray-700 hover:border-gray-600 transition-colors duration-300"
+                                                        className="px-2 sm:px-3 py-1 bg-gray-800 text-gray-300 text-xs sm:text-sm rounded-lg border border-gray-700 hover:border-gray-600 transition-colors duration-300"
                                                     >
                                                         {tech}
                                                     </span>
@@ -125,15 +125,15 @@ const Projects = () => {
                                         </div>
                                         
                                         {/* Links */}
-                                        <div className="flex gap-3 mt-auto">
+                                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
                                             {project.link && (
                                                 <a 
                                                     href={project.link} 
                                                     target="_blank" 
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300 hover:scale-105"
+                                                    className="flex items-center justify-center px-3 sm:px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300 hover:scale-105 text-sm"
                                                 >
-                                                    <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                    <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                                         <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                                     </svg>
                                                     Code
@@ -144,9 +144,9 @@ const Projects = () => {
                                                     href={project.externalURL} 
                                                     target="_blank" 
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center px-4 py-2 bg-white text-black hover:bg-gray-200 rounded-lg transition-all duration-300 hover:scale-105 font-medium"
+                                                    className="flex items-center justify-center px-3 sm:px-4 py-2 bg-white text-black hover:bg-gray-200 rounded-lg transition-all duration-300 hover:scale-105 font-medium text-sm"
                                                 >
-                                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                                     </svg>
                                                     {project.isAppStore ? "App Store" : "Live Demo"}
