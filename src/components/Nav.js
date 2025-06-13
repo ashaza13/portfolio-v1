@@ -20,7 +20,8 @@ const Nav = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-8 pt-6 sm:pt-8 lg:px-12 xl:px-16 animate-fadeInDown safe-area-padding">
-      <nav className="flex items-center justify-between py-2 px-4 sm:py-3" aria-label="Global">
+      <nav className="flex items-center justify-between py-2 px-4 
+      sm:py-3" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="./" className="text-white text-xl sm:text-2xl font-bold tracking-wider hover:text-gray-300 transition-colors duration-300" >
             A

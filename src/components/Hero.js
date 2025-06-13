@@ -6,7 +6,7 @@ const Hero = () => {
     const glitchButton = useGlitch({ playMode: "hover" });
 
     return (
-        <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-16 z-10 pb-12 sm:pb-16 lg:pb-20">
+        <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-16 py-16 sm:py-20 lg:py-24 z-10">
             
             <div className="max-w-6xl text-center mb-12 sm:mb-16 lg:mb-20">
                 {/* Main heading with FLUXC-style typography */}
@@ -42,7 +42,7 @@ const Hero = () => {
             {/* Feature Cards */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl w-full animate-slide-up px-2 sm:px-0" style={{animationDelay: '0.6s'}}>
                 {/* AI Development Card */}
-                <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
+                <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
                     <div className="mb-4 sm:mb-6">
                         {/* AI Icon */}
                         <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
@@ -58,7 +58,7 @@ const Hero = () => {
                 </div>
                 
                 {/* Full-Stack Development Card */}
-                <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
+                <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
                     <div className="mb-4 sm:mb-6">
                         {/* Code Icon */}
                         <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
