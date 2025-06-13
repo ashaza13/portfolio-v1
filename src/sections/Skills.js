@@ -80,16 +80,16 @@ const Skills = () => {
     ];
 
     return (
-        <section id="skills" className="bg-black py-20 sm:py-24 lg:py-32 xl:py-40">
+        <section id="skills" className="bg-black py-16 sm:py-20 lg:py-24 xl:py-32">
             <motion.div
                 initial={{ opacity:0, y: 50}}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, type: "tween" }}
             >
-                <div className="mx-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
-                    <div className="text-center mb-16 sm:mb-20 lg:mb-24">
+                    <div className="text-center mb-12 sm:mb-16 lg:mb-20">
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">Skills & Technologies</h2>
                         <div className="w-24 h-0.5 bg-gray-600 mx-auto mb-6"></div>
                         <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed px-2">
@@ -98,7 +98,7 @@ const Skills = () => {
                     </div>
                     
                     {/* Main Content */}
-                    <div className="flex flex-col lg:flex-row gap-8">
+                    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                         {/* Category Navigation */}
                         <div className="lg:w-1/3">
                             {/* Mobile: Horizontal scroll tabs */}
@@ -107,7 +107,7 @@ const Skills = () => {
                                     {skillCategories.map((category, index) => (
                                         <button 
                                             key={index}
-                                            className={`flex-shrink-0 px-4 py-2 rounded-lg border text-sm transition-all duration-300 ${
+                                            className={`flex-shrink-0 px-3 py-2 rounded-lg border text-sm transition-all duration-300 ${
                                                 activeCategory === index 
                                                     ? "bg-gray-800 border-gray-700 text-white" 
                                                     : "bg-gray-900/30 border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800/50"
@@ -143,7 +143,7 @@ const Skills = () => {
                         </div>
                         
                         {/* Skills Content */}
-                        <div className="lg:w-2/3 relative min-h-[300px] sm:min-h-[400px]">
+                        <div className="lg:w-2/3">
                             {skillCategories.map((category, categoryIndex) => (
                                 <motion.div 
                                     key={categoryIndex}
@@ -157,14 +157,14 @@ const Skills = () => {
                                         ease: "easeInOut",
                                         delay: activeCategory === categoryIndex ? 0.1 : 0
                                     }}
-                                    className={`absolute inset-0 ${
-                                        activeCategory === categoryIndex ? "pointer-events-auto" : "pointer-events-none"
+                                    className={`${
+                                        activeCategory === categoryIndex ? "block" : "hidden"
                                     }`}
                                 >
-                                    <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
+                                    <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
                                         <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">{category.title}</h3>
                                         
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
                                             {category.skills.map((skill, skillIndex) => (
                                                 <motion.div
                                                     key={skillIndex}
@@ -182,8 +182,8 @@ const Skills = () => {
                                                     <div className="relative bg-gray-800/30 backdrop-blur-sm rounded-xl border border-gray-700 hover:border-gray-600 p-3 sm:p-4 transition-all duration-500 hover:transform hover:scale-105 group-hover:bg-gray-700/50">
                                                         {/* Skill Icon */}
                                                         <div className="flex items-center justify-center mb-2 sm:mb-3">
-                                                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 rounded-xl flex items-center justify-center group-hover:bg-gray-600 transition-colors duration-300">
-                                                                <skill.icon className={`text-lg sm:text-2xl text-white ${skill.hoverColor} group-hover:scale-110 transition-all duration-300`} />
+                                                            <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gray-700 rounded-xl flex items-center justify-center group-hover:bg-gray-600 transition-colors duration-300">
+                                                                <skill.icon className={`text-sm sm:text-lg lg:text-2xl text-white ${skill.hoverColor} group-hover:scale-110 transition-all duration-300`} />
                                                             </div>
                                                         </div>
                                                         
