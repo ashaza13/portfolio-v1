@@ -298,6 +298,18 @@ const TechnologyWeb = ({ technologies }) => {
                     className="absolute inset-0 w-full h-full pointer-events-none"
                     style={{ zIndex: 1 }}
                 >
+                    <defs>
+                        <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style={{stopColor: '#FF6B35', stopOpacity: 0.8}} />
+                            <stop offset="50%" style={{stopColor: '#FFB340', stopOpacity: 0.6}} />
+                            <stop offset="100%" style={{stopColor: '#4FC3F7', stopOpacity: 0.8}} />
+                        </linearGradient>
+                        <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style={{stopColor: '#FF6B35', stopOpacity: 1}} />
+                            <stop offset="100%" style={{stopColor: '#F7931E', stopOpacity: 1}} />
+                        </linearGradient>
+                    </defs>
+                    
                     {/* Render all connections between technology nodes */}
                     {connections.map((connection, index) => {
                         const isHighlighted = hoveredIndex !== null && 
@@ -310,10 +322,11 @@ const TechnologyWeb = ({ technologies }) => {
                                 y1={connection.from.y}
                                 x2={connection.to.x}
                                 y2={connection.to.y}
-                                stroke={isHighlighted ? "#f97316" : "#6b7280"}
+                                stroke={isHighlighted ? "url(#highlightGradient)" : "url(#connectionGradient)"}
                                 strokeWidth={isHighlighted ? "3" : "1.5"}
-                                opacity={isHighlighted ? "1" : "0.6"}
+                                opacity={isHighlighted ? "1" : "0.4"}
                                 className="transition-all duration-1000 ease-out"
+                                strokeDasharray={connection.type === 'long' ? "5,5" : "none"}
                             />
                         );
                     })}
@@ -331,7 +344,7 @@ const TechnologyWeb = ({ technologies }) => {
                                 left: currentPositions[index].x,
                                 top: currentPositions[index].y,
                                 zIndex: hoveredIndex === index ? 4 : 2,
-                                transform: `translate(-50%, -50%) ${hoveredIndex === index ? 'scale(1.1)' : 'scale(1)'}`
+                                transform: `translate(-50%, -50%) ${hoveredIndex === index ? 'scale(1.15)' : 'scale(1)'}`
                             }}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
