@@ -1,28 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind components;
 @tailwind base;
 @tailwind utilities;
 
-/* Modern scrollbar styling */
+/* Modern scrollbar styling - Headspace inspired */
 *::-webkit-scrollbar {
   width: 8px;
 }
 
 *::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 179, 64, 0.1);
   border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, #FF6B35, #FFB340);
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #f093fb, #667eea);
+  background: linear-gradient(45deg, #F7931E, #FF6B35);
   background-clip: content-box;
 }
 
@@ -31,6 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  font-family: 'Inter', 'Space Grotesk', sans-serif;
 }
 
 /* Smooth scroll behavior */
@@ -38,14 +39,26 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom utility classes */
+/* Custom utility classes - Headspace inspired */
 @layer utilities {
   .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply bg-white/20 backdrop-blur-md border border-white/30;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-accent to-blue-light bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+  
+  .headspace-card {
+    @apply bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50 hover:bg-white/90 hover:shadow-xl transition-all duration-300;
+  }
+  
+  .headspace-button {
+    @apply bg-primary text-white font-semibold rounded-full hover:bg-orange-dark transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
+  }
+  
+  .headspace-button-secondary {
+    @apply bg-blue-light text-white font-semibold rounded-full hover:bg-blue-dark transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
   }
   
   /* Hide scrollbar but allow scrolling */
@@ -82,5 +95,19 @@ html {
     padding-right: env(safe-area-inset-right);
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Headspace-style floating elements */
+  .float-gentle {
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+  
+  @keyframes float-gentle {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
   }
 }

@@ -35,52 +35,57 @@ const Skills = () => {
     const skillCategories = [
         {
             title: "Programming Languages",
+            color: "from-primary to-secondary",
             skills: [
-                { icon: FaPython, name: "Python", hoverColor: "group-hover:text-blue-400" },
-                { icon: FaJs, name: "JavaScript", hoverColor: "group-hover:text-yellow-400" },
-                { icon: SiSwift, name: "Swift", hoverColor: "group-hover:text-orange-500" },
+                { icon: FaPython, name: "Python", color: "from-blue-light to-blue-dark" },
+                { icon: FaJs, name: "JavaScript", color: "from-accent to-secondary" },
+                { icon: SiSwift, name: "Swift", color: "from-primary to-accent" },
             ]
         },
         {
             title: "AI & Machine Learning",
+            color: "from-green-light to-green-dark",
             skills: [
-                { icon: SiTensorflow, name: "TensorFlow", hoverColor: "group-hover:text-orange-500" },
-                { icon: SiPytorch, name: "PyTorch", hoverColor: "group-hover:text-red-500" },
-                { icon: FaPython, name: "Scikit-learn", hoverColor: "group-hover:text-blue-400" },
-                { icon: FaLink, name: "LangChain", hoverColor: "group-hover:text-green-400" },
-                { icon: FaRobot, name: "LangGraph", hoverColor: "group-hover:text-purple-400" },
-                { icon: FaAws, name: "AWS Bedrock", hoverColor: "group-hover:text-orange-400" },
-                { icon: SiOpenai, name: "OpenAI", hoverColor: "group-hover:text-green-500" },
+                { icon: SiTensorflow, name: "TensorFlow", color: "from-primary to-secondary" },
+                { icon: SiPytorch, name: "PyTorch", color: "from-accent to-primary" },
+                { icon: FaPython, name: "Scikit-learn", color: "from-blue-light to-blue-dark" },
+                { icon: FaLink, name: "LangChain", color: "from-green-light to-green-dark" },
+                { icon: FaRobot, name: "LangGraph", color: "from-primary to-blue-light" },
+                { icon: FaAws, name: "AWS Bedrock", color: "from-secondary to-accent" },
+                { icon: SiOpenai, name: "OpenAI", color: "from-green-light to-blue-light" },
             ]
         },
         {
             title: "Frontend & Mobile",
+            color: "from-blue-light to-blue-dark",
             skills: [
-                { icon: FaReact, name: "React", hoverColor: "group-hover:text-cyan-400" }
+                { icon: FaReact, name: "React", color: "from-blue-light to-blue-dark" }
             ]
         },
         {
             title: "Cloud & DevOps",
+            color: "from-secondary to-accent",
             skills: [
-                { icon: FaAws, name: "AWS", hoverColor: "group-hover:text-orange-400" },
-                { icon: SiGooglecloud, name: "Google Cloud", hoverColor: "group-hover:text-blue-500" },
-                { icon: SiMicrosoftazure, name: "Azure", hoverColor: "group-hover:text-blue-600" },
-                { icon: FaDocker, name: "Docker", hoverColor: "group-hover:text-blue-500" },
-                { icon: SiKubernetes, name: "Kubernetes", hoverColor: "group-hover:text-blue-600" },
+                { icon: FaAws, name: "AWS", color: "from-secondary to-accent" },
+                { icon: SiGooglecloud, name: "Google Cloud", color: "from-blue-light to-blue-dark" },
+                { icon: SiMicrosoftazure, name: "Azure", color: "from-blue-dark to-primary" },
+                { icon: FaDocker, name: "Docker", color: "from-blue-light to-green-light" },
+                { icon: SiKubernetes, name: "Kubernetes", color: "from-blue-dark to-green-dark" },
             ]
         },
         {
             title: "Databases & Tools",
+            color: "from-primary to-blue-light",
             skills: [
-                { icon: SiPostgresql, name: "PostgreSQL", hoverColor: "group-hover:text-blue-600" },
-                { icon: FaGitAlt, name: "Git", hoverColor: "group-hover:text-orange-500" },
-                { icon: FaLinux, name: "Linux", hoverColor: "group-hover:text-yellow-500" },
+                { icon: SiPostgresql, name: "PostgreSQL", color: "from-blue-dark to-blue-light" },
+                { icon: FaGitAlt, name: "Git", color: "from-secondary to-primary" },
+                { icon: FaLinux, name: "Linux", color: "from-accent to-secondary" },
             ]
         }
     ];
 
     return (
-        <section id="skills" className="bg-black py-16 sm:py-20 lg:py-24 xl:py-32">
+        <section id="skills" className="bg-gradient-to-br from-lightBlue to-warm-gray py-16 sm:py-20 lg:py-24 xl:py-32">
             <motion.div
                 initial={{ opacity:0, y: 50}}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -90,9 +95,9 @@ const Skills = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
                     <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">Skills & Technologies</h2>
-                        <div className="w-24 h-0.5 bg-gray-600 mx-auto mb-6"></div>
-                        <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed px-2">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate mb-4">Skills & Technologies</h2>
+                        <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-6"></div>
+                        <p className="text-sm sm:text-base text-darkSlate max-w-2xl mx-auto leading-relaxed px-2">
                             A comprehensive overview of my technical expertise across various domains of software development.
                         </p>
                     </div>
@@ -103,14 +108,14 @@ const Skills = () => {
                         <div className="lg:w-1/3">
                             {/* Mobile: Horizontal scroll tabs */}
                             <div className="lg:hidden">
-                                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                                     {skillCategories.map((category, index) => (
                                         <button 
                                             key={index}
-                                            className={`flex-shrink-0 px-3 py-2 rounded-lg border text-sm transition-all duration-300 ${
+                                            className={`flex-shrink-0 px-4 py-3 rounded-full border text-sm font-medium transition-all duration-300 ${
                                                 activeCategory === index 
-                                                    ? "bg-gray-800 border-gray-700 text-white" 
-                                                    : "bg-gray-900/30 border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800/50"
+                                                    ? "bg-white text-slate border-white shadow-lg" 
+                                                    : "bg-white/70 border-white/50 text-darkSlate hover:bg-white hover:shadow-lg"
                                             }`}
                                             onClick={() => setActiveCategory(index)}
                                         >
@@ -122,19 +127,19 @@ const Skills = () => {
 
                             {/* Desktop: Vertical tabs */}
                             <div className="hidden lg:block">
-                                <ul className="space-y-2">
+                                <ul className="space-y-3">
                                     {skillCategories.map((category, index) => (
                                         <li key={index}>
                                             <button 
-                                                className={`w-full text-left px-4 py-3 rounded-lg border transition-all duration-500 ease-in-out transform ${
+                                                className={`w-full text-left px-6 py-4 rounded-2xl border transition-all duration-500 ease-in-out transform ${
                                                     activeCategory === index 
-                                                        ? "bg-gray-800 border-gray-700 text-white scale-105 shadow-lg" 
-                                                        : "bg-gray-900/30 border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-102"
+                                                        ? "bg-white border-white text-slate scale-105 shadow-xl" 
+                                                        : "bg-white/70 border-white/50 text-darkSlate hover:bg-white hover:scale-102 hover:shadow-lg"
                                                 }`}
                                                 onClick={() => setActiveCategory(index)}
                                             >
-                                                <div className="font-medium">{category.title}</div>
-                                                <div className="text-sm opacity-75">{category.skills.length} technologies</div>
+                                                <div className="font-semibold text-base">{category.title}</div>
+                                                <div className="text-sm opacity-75 mt-1">{category.skills.length} technologies</div>
                                             </button>
                                         </li>
                                     ))}
@@ -161,10 +166,13 @@ const Skills = () => {
                                         activeCategory === categoryIndex ? "block" : "hidden"
                                     }`}
                                 >
-                                    <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-800 hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">{category.title}</h3>
+                                    <div className="headspace-card p-6 sm:p-8 lg:p-10">
+                                        <div className="flex items-center mb-6 sm:mb-8">
+                                            <div className={`w-3 h-8 bg-gradient-to-b ${category.color} rounded-full mr-4`}></div>
+                                            <h3 className="text-xl sm:text-2xl font-semibold text-slate">{category.title}</h3>
+                                        </div>
                                         
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                                             {category.skills.map((skill, skillIndex) => (
                                                 <motion.div
                                                     key={skillIndex}
@@ -179,16 +187,16 @@ const Skills = () => {
                                                     }}
                                                     className="group"
                                                 >
-                                                    <div className="relative bg-gray-800/30 backdrop-blur-sm rounded-xl border border-gray-700 hover:border-gray-600 p-3 sm:p-4 transition-all duration-500 hover:transform hover:scale-105 group-hover:bg-gray-700/50">
+                                                    <div className="relative bg-white rounded-2xl p-4 sm:p-6 transition-all duration-500 hover:transform hover:scale-110 hover:shadow-xl border border-white/50">
                                                         {/* Skill Icon */}
-                                                        <div className="flex items-center justify-center mb-2 sm:mb-3">
-                                                            <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gray-700 rounded-xl flex items-center justify-center group-hover:bg-gray-600 transition-colors duration-300">
-                                                                <skill.icon className={`text-sm sm:text-lg lg:text-2xl text-white ${skill.hoverColor} group-hover:scale-110 transition-all duration-300`} />
+                                                        <div className="flex items-center justify-center mb-3 sm:mb-4">
+                                                            <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br ${skill.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg`}>
+                                                                <skill.icon className="text-lg sm:text-xl lg:text-2xl text-white transition-all duration-300" />
                                                             </div>
                                                         </div>
                                                         
                                                         {/* Skill Name */}
-                                                        <h4 className="text-xs sm:text-sm font-medium text-white text-center group-hover:text-gray-200 transition-colors duration-300">
+                                                        <h4 className="text-xs sm:text-sm font-semibold text-slate text-center transition-colors duration-300">
                                                             {skill.name}
                                                         </h4>
                                                     </div>
