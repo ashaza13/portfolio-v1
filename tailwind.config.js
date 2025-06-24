@@ -6,11 +6,13 @@ module.exports = {
       backgroundImage: {
         'symbiota': "url('../src/static/images/symbiota.png')",
         'matlab': "url('../src/static/images/chase.png')",
-        'gradient-main': 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)',
-        'gradient-purple': 'linear-gradient(135deg, #FFB340 0%, #FF8A65 100%)',
-        'gradient-blue': 'linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%)',
-        'gradient-card': 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)',
-        'gradient-warm': 'linear-gradient(135deg, #FF6B35 0%, #FFB340 50%, #4FC3F7 100%)',
+        'gradient-main': 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%)',
+        'gradient-palantir': 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 50%, #0f172a 100%)',
+        'gradient-accent': 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+        'gradient-card': 'linear-gradient(145deg, rgba(30, 58, 138, 0.1) 0%, rgba(15, 23, 42, 0.05) 100%)',
+        'gradient-hover': 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)',
+        'gradient-purple': 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+        'gradient-blue': 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
       },
       rotate: {
         '30': '30deg',
@@ -22,23 +24,28 @@ module.exports = {
         xl: '1440px',
       },
       colors: {
-        primary: '#FF6B35',        // Warm orange (main brand color)
-        secondary: '#F7931E',      // Golden orange
-        accent: '#FFB340',         // Light orange/yellow
-        'orange-light': '#FFB340', // Light orange
-        'orange-dark': '#FF6B35',  // Deep orange
-        'blue-light': '#4FC3F7',   // Soft blue
-        'blue-dark': '#29B6F6',    // Medium blue
-        'green-light': '#81C784',  // Soft green
-        'green-dark': '#66BB6A',   // Medium green
-        'warm-white': '#FEFEFE',   // Clean white
-        'warm-gray': '#F5F5F5',    // Very light gray
-        lightGray: '#E0E0E0',      // Light gray
-        customGray: '#BDBDBD',     // Medium gray
-        lightBlue: '#E3F2FD',      // Very light blue
-        navyBlue: '#1565C0',       // Deep blue
-        slate: '#37474F',          // Dark slate
-        darkSlate: '#263238',      // Darker slate
+        // Palantir-inspired color palette
+        primary: '#1e40af',
+        secondary: '#1e3a8a',
+        accent: '#3b82f6',
+        'palantir-blue': '#1e40af',
+        'palantir-navy': '#1e3a8a',
+        'palantir-dark': '#0f172a',
+        'palantir-slate': '#0f1419',
+        'palantir-gray': '#334155',
+        'palantir-light': '#64748b',
+        'blue-light': '#3b82f6',
+        'blue-dark': '#1d4ed8',
+        'navy-light': '#1e40af',
+        'navy-dark': '#1e3a8a',
+        'slate-light': '#475569',
+        'slate-dark': '#334155',
+        lightGray: '#94a3b8',
+        customGray: '#64748b',
+        lightBlue: '#3b82f6',
+        navyBlue: '#1e40af',
+        slate: '#0f172a',
+        darkSlate: '#020617',
       },
       keyframes: {
         typing: {
@@ -96,12 +103,28 @@ module.exports = {
             'background-position': 'right center'
           },
         },
+        'palantir-glow': {
+          '0%, 100%': {
+            'box-shadow': '0 0 20px rgba(59, 130, 246, 0.3)',
+          },
+          '50%': {
+            'box-shadow': '0 0 30px rgba(59, 130, 246, 0.5)',
+          },
+        },
+        'subtle-pulse': {
+          '0%, 100%': {
+            opacity: '0.8',
+          },
+          '50%': {
+            opacity: '1',
+          },
+        },
         float: {
           '0%, 100%': {
             transform: 'translateY(0px)',
           },
           '50%': {
-            transform: 'translateY(-20px)',
+            transform: 'translateY(-10px)',
           },
         },
         'slide-up': {
@@ -114,14 +137,24 @@ module.exports = {
             opacity: '1',
           },
         },
-        'bounce-soft': {
-          '0%, 100%': {
-            transform: 'translateY(0)',
-            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+        'slide-in-right': {
+          '0%': {
+            transform: 'translateX(100px)',
+            opacity: '0',
           },
-          '50%': {
-            transform: 'translateY(-10px)',
-            'animation-timing-function': 'cubic-bezier(0.8,0,1,1)',
+          '100%': {
+            transform: 'translateX(0)',
+            opacity: '1',
+          },
+        },
+        'scale-in': {
+          '0%': {
+            transform: 'scale(0.9)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'scale(1)',
+            opacity: '1',
           },
         },
       },
@@ -131,9 +164,12 @@ module.exports = {
         fadeInDown: "fadeInDown 1s ease-in",
         fadeInUp: "fadeInUp 0.5s ease-in",
         'gradient': 'gradient 8s ease infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'slide-up': 'slide-up 0.5s ease-out',
-        'bounce-soft': 'bounce-soft 2s infinite',
+        'palantir-glow': 'palantir-glow 4s ease-in-out infinite',
+        'subtle-pulse': 'subtle-pulse 3s ease-in-out infinite',
+        'float': 'float 8s ease-in-out infinite',
+        'slide-up': 'slide-up 0.6s ease-out',
+        'slide-in-right': 'slide-in-right 0.6s ease-out',
+        'scale-in': 'scale-in 0.5s ease-out',
       }
     },
     fontFamily: {

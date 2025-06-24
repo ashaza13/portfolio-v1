@@ -4,25 +4,25 @@
 @tailwind base;
 @tailwind utilities;
 
-/* Modern scrollbar styling - Headspace inspired */
+/* Palantir-inspired scrollbar styling */
 *::-webkit-scrollbar {
   width: 8px;
 }
 
 *::-webkit-scrollbar-track {
-  background: rgba(255, 179, 64, 0.1);
+  background: rgba(30, 64, 175, 0.1);
   border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #FF6B35, #FFB340);
+  background: linear-gradient(45deg, #3b82f6, #1e40af);
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #F7931E, #FF6B35);
+  background: linear-gradient(45deg, #60a5fa, #3b82f6);
   background-clip: content-box;
 }
 
@@ -39,26 +39,37 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom utility classes - Headspace inspired */
+/* Palantir-inspired utility classes */
 @layer utilities {
-  .glass-effect {
-    @apply bg-white/20 backdrop-blur-md border border-white/30;
+  /* Glass morphism effects */
+  .glass-morphism {
+    @apply bg-palantir-dark/30 backdrop-blur-xl border border-palantir-blue/20;
   }
   
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  .glass-effect-dark {
+    @apply bg-palantir-dark/40 backdrop-blur-md border border-palantir-blue/10;
   }
   
-  .headspace-card {
-    @apply bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50 hover:bg-white/90 hover:shadow-xl transition-all duration-300;
+  /* Gradient text utilities */
+  .gradient-text-accent {
+    @apply bg-gradient-to-r from-blue-light to-palantir-blue bg-clip-text text-transparent;
   }
   
-  .headspace-button {
-    @apply bg-primary text-white font-semibold rounded-full hover:bg-orange-dark transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
+  .gradient-text-primary {
+    @apply bg-gradient-to-r from-palantir-blue to-palantir-navy bg-clip-text text-transparent;
   }
   
-  .headspace-button-secondary {
-    @apply bg-blue-light text-white font-semibold rounded-full hover:bg-blue-dark transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
+  /* Palantir glow effects */
+  .palantir-glow-sm {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  
+  .palantir-glow-md {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  }
+  
+  .palantir-glow-lg {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
   }
   
   /* Hide scrollbar but allow scrolling */
@@ -97,17 +108,56 @@ html {
     padding-bottom: env(safe-area-inset-bottom);
   }
   
-  /* Headspace-style floating elements */
-  .float-gentle {
-    animation: float-gentle 6s ease-in-out infinite;
+  /* Palantir-style animations */
+  .animate-palantir-glow {
+    animation: palantir-glow 3s ease-in-out infinite alternate;
   }
   
-  @keyframes float-gentle {
+  .animate-subtle-pulse {
+    animation: subtle-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .animate-scale-in {
+    animation: scale-in 0.6s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  
+  @keyframes palantir-glow {
+    0% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes subtle-pulse {
     0%, 100% {
-      transform: translateY(0px);
+      opacity: 0.8;
     }
     50% {
-      transform: translateY(-15px);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scale-in {
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }
