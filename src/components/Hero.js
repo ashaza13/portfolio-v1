@@ -2,7 +2,6 @@ import React from "react";
 import { useGlitch } from "react-powerglitch";
 
 const Hero = () => {
-    const glitch = useGlitch({ glitchTimeSpan: { "start": 0.7, "end": 0.9 }, timing: { "duration": 3450 } });
     const glitchButton = useGlitch({ playMode: "hover" });
 
     return (

@@ -1,31 +1,24 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-    FaJava, 
-    FaPython, 
-    FaJs, 
-    FaReact, 
-    FaAws, 
-    FaLinux, 
+import {
+    FaPython,
+    FaJs,
+    FaReact,
+    FaAws,
+    FaLinux,
     FaDocker,
-    FaNodeJs,
     FaGitAlt,
     FaRobot,
-    FaLink 
+    FaLink
 } from "react-icons/fa";
-import { 
-    SiFlask, 
-    SiGooglecloud, 
-    SiMicrosoftazure, 
-    SiSwift, 
-    SiMysql, 
-    SiTensorflow, 
+import {
+    SiGooglecloud,
+    SiMicrosoftazure,
+    SiSwift,
+    SiTensorflow,
     SiPytorch,
     SiKubernetes,
-    SiMongodb,
     SiPostgresql,
-    SiRedis,
-    SiTypescript,
     SiOpenai
 } from "react-icons/si";
 
