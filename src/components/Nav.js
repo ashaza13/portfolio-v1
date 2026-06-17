@@ -58,7 +58,7 @@ const Nav = () => {
         </div>
       </nav>
       <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <Dialog.Panel className="fixed inset-0 z-10 overflow-y-auto bg-white/95 backdrop-blur-md lg:hidden safe-area-padding">
+        <Dialog.Panel className="fixed inset-0 z-10 overflow-y-auto bg-darkSlate/95 backdrop-blur-md lg:hidden safe-area-padding">
           <div className="flex items-center justify-between px-6 sm:px-8 py-6 sm:py-8">
             <a href="./" className="text-white text-xl sm:text-2xl font-bold tracking-wider" >
               A
@@ -73,7 +73,7 @@ const Nav = () => {
             </button>
           </div>
           <div className="mt-6 sm:mt-8 flow-root px-6 sm:px-8">
-            <div className="-my-6 divide-y divide-white">
+            <div className="-my-6 divide-y divide-palantir-blue/20">
               <div className="space-y-3 py-8">
                 {navigation.map((item) => (
                   <HashLink
