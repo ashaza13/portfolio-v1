@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const About = () => {
     return (
-        <section id="about" className="relative py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-b from-slate to-palantir-dark">
+        <section id="about" className="relative py-16 sm:py-20 lg:py-24 xl:py-32 scroll-mt-20 bg-gradient-to-b from-slate to-palantir-dark">
             
             <motion.div
                 initial={{ opacity:0, y: 50}}

@@ -14,14 +14,8 @@ const StickySocials = () => {
                 <li className="pb-2">
                     <a href="https://www.linkedin.com/in/ashaz-ahmed/" target="_blank"><FiLinkedin className="transition duration-500 hover:text-orange-600 hover:-translate-y-2" /></a>
                 </li>
-                <li className="py-4">
-                    <div className="border-t-2 border-white"></div>
-                </li>
-                <li className="py-4">
-                    <div className="border-t-2 border-white"></div>
-                </li>
-                <li className="pb-12 pt-4">
-                    <div className="border-t-2 border-white"></div>
+                <li className="flex justify-center pt-4 pb-12">
+                    <div className="w-0.5 h-24 bg-white/50"></div>
                 </li>
             </ul>
         </div>

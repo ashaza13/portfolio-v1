@@ -6,7 +6,7 @@ const Contact = () => {
     const glitchButton = useGlitch({ playMode: "hover" });
 
     return (
-        <section id="contact" className="bg-gradient-to-b from-palantir-dark to-darkSlate py-16 sm:py-20 lg:py-24 xl:py-32">
+        <section id="contact" className="bg-gradient-to-b from-palantir-dark to-darkSlate py-16 sm:py-20 lg:py-24 xl:py-32 scroll-mt-20">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
