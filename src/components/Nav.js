@@ -19,8 +19,8 @@ const Nav = () => {
   const glitchButton = useGlitch({ playMode: "hover" });
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-8 pt-6 sm:pt-8 lg:px-12 xl:px-16 animate-fadeInDown safe-area-padding">
-      <nav className="flex items-center justify-between py-3 px-6  sm:py-4 sm:px-8" aria-label="Global">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-darkSlate/90 backdrop-blur-md border-b border-palantir-blue/10 animate-fadeInDown safe-area-padding">
+      <nav className="flex items-center justify-between py-4 px-6 sm:py-5 sm:px-8 lg:px-12 xl:px-16" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="./" className="text-white text-xl sm:text-2xl font-bold tracking-wider hover:text-primary transition-colors duration-300" >
             A

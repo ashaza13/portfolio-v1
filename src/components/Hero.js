@@ -5,7 +5,7 @@ const Hero = () => {
     const glitchButton = useGlitch({ playMode: "hover" });
 
     return (
-        <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 z-10 bg-gradient-to-b from-darkSlate via-palantir-dark to-slate">
+        <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-16 sm:pb-20 lg:pb-24 z-10 bg-gradient-to-b from-darkSlate via-palantir-dark to-slate">
             
             <div className="max-w-6xl text-center mb-12 sm:mb-16 lg:mb-20">
                 {/* Main heading with Palantir-style typography */}
