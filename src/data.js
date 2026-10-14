@@ -101,7 +101,7 @@ export const experiences = [
     {
         company: "HEVT",
         position: "Undergraduate Researcher",
-        duration: "2022 — Present",
+        duration: "2022 — 2024",
         location: "Blacksburg, VA",
         responsibilities: [
             "Conducted research for the Cadillac Lyriq EcoCAR 4-year design competition sponsored by General Motors.",
