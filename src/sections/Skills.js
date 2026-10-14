@@ -9,8 +9,8 @@ const Skills = () => (
             <SectionHeading
                 index="02"
                 eyebrow="Skills"
-                title="A toolkit built for shipping intelligent systems."
-                description="The languages, frameworks, and platforms I use to take ideas from prototype to production."
+                title="A toolkit built for shipping systems at scale."
+                description="The languages, frameworks, and platforms I use to take systems from prototype to production."
             />
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

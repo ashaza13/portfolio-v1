@@ -30,7 +30,7 @@ const Hero = () => (
                 <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-pulse-dot rounded-full bg-emerald-400" />
                 </span>
-                Data &amp; AI Solutions Architect @ Accenture Federal Services
+                Backend Engineer @ Takt
             </motion.a>
 
             <motion.h1
@@ -38,15 +38,15 @@ const Hero = () => (
                 className="max-w-4xl text-[2.6rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl"
             >
                 <span className="block">Ashaz Ahmed.</span>
-                <span className="text-gradient block pb-1">I build AI systems people rely on.</span>
+                <span className="text-gradient block pb-1">I build real-time systems that turn data into decisions.</span>
             </motion.h1>
 
             <motion.p
                 {...fadeUp(0.16)}
                 className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
             >
-                Software engineer specializing in LLM-powered agents, machine learning, and serverless data
-                platforms that serve millions of people in the public sector.
+                Backend engineer building streaming pipelines and services in Go and Python on Google Cloud.
+                Before Takt, I shipped LLM-powered agents that served millions of people in the public sector.
             </motion.p>
 
             <motion.div {...fadeUp(0.24)} className="mt-10 flex flex-wrap items-center gap-3">

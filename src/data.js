@@ -1,4 +1,18 @@
-import { FaPython, FaJs, FaReact, FaAws, FaLinux, FaDocker, FaGitAlt, FaRobot, FaLink } from "react-icons/fa";
+import {
+    FaPython,
+    FaJs,
+    FaReact,
+    FaAws,
+    FaLinux,
+    FaDocker,
+    FaGitAlt,
+    FaRobot,
+    FaLink,
+    FaDatabase,
+    FaServer,
+    FaStream,
+    FaTerminal,
+} from "react-icons/fa";
 import {
     SiGooglecloud,
     SiMicrosoftazure,
@@ -9,6 +23,10 @@ import {
     SiPostgresql,
     SiOpenai,
     SiScikitlearn,
+    SiGo,
+    SiApache,
+    SiTwilio,
+    SiSocketdotio,
 } from "react-icons/si";
 import { FiGithub, FiLinkedin, FiCamera, FiMail } from "react-icons/fi";
 
@@ -35,16 +53,30 @@ export const navigation = [
 ];
 
 export const stats = [
-    { value: "14M+", label: "users reached by LLM chatbot" },
-    { value: "1.4M", label: "support calls handled by AI agent" },
-    { value: "90%", label: "faster FAFSA issue resolution" },
+    { value: "~1B", label: "rows streamed daily through my pipelines" },
+    { value: "10", label: "real-time Dataflow pipelines built" },
+    { value: "14M+", label: "users served by an LLM chatbot I shipped" },
 ];
 
 export const experiences = [
     {
+        company: "Takt",
+        position: "Backend Engineer",
+        duration: "2025 — Present",
+        location: "Reston, VA",
+        responsibilities: [
+            "Built all of Takt's real-time data streaming pipelines in Python with Apache Beam on Google Cloud Dataflow. Ten pipelines each process around 100 million rows a day, significantly improving system performance and giving customers real-time, data-driven insights.",
+            "Architected and built the notification system end to end in Go, delivering real-time alerts over WebSockets and SMS through Twilio.",
+            "Architected and built the gamification system in Go and Dataflow, turning live performance data into engagement features.",
+            "Architected and built the Learning Curve system in Go, giving managers insight into how quickly new employees ramp up.",
+            "Work daily with AI-assisted tools like Claude, Cursor, and Codex to help build a modern platform that benefits from AI without relying on it.",
+        ],
+        tags: ["Go", "Python", "Apache Beam", "Dataflow", "BigQuery", "Spanner", "WebSockets", "Twilio"],
+    },
+    {
         company: "Accenture Federal Services",
         position: "Data & AI Solutions Architect",
-        duration: "Feb 2024 — Present",
+        duration: "2024 — 2025",
         location: "Arlington, VA",
         responsibilities: [
             "Developed a serverless data analytics platform in AWS SageMaker Studio, used by 100+ users, improving accessibility and reducing Python package installation time from 2 months to 2 weeks.",
@@ -57,7 +89,7 @@ export const experiences = [
     {
         company: "GDIT",
         position: "Software Developer Associate",
-        duration: "Jun 2022 — Aug 2023",
+        duration: "2022 — 2023",
         location: "Falls Church, VA (remote)",
         responsibilities: [
             "Worked on the ISEE contract with the Defense Intelligence Agency (DIA) concerning the automation of admin account creation along with identity, credential, and access management (ICAM) for all other users.",
@@ -69,7 +101,7 @@ export const experiences = [
     {
         company: "HEVT",
         position: "Undergraduate Researcher",
-        duration: "Dec 2022 — Present",
+        duration: "2022 — Present",
         location: "Blacksburg, VA",
         responsibilities: [
             "Conducted research for the Cadillac Lyriq EcoCAR 4-year design competition sponsored by General Motors.",
@@ -137,6 +169,30 @@ export const projects = [
 
 export const skillCategories = [
     {
+        title: "Backend & Data Streaming",
+        description: "Real-time pipelines and services at scale.",
+        skills: [
+            { icon: SiGo, name: "Go" },
+            { icon: FaPython, name: "Python" },
+            { icon: SiApache, name: "Apache Beam" },
+            { icon: FaStream, name: "Dataflow" },
+            { icon: FaDatabase, name: "BigQuery" },
+            { icon: FaServer, name: "Spanner" },
+            { icon: SiSocketdotio, name: "WebSockets" },
+            { icon: SiTwilio, name: "Twilio" },
+        ],
+        wide: true,
+    },
+    {
+        title: "AI-Assisted Development",
+        description: "Tools that speed up how I build.",
+        skills: [
+            { icon: FaTerminal, name: "Claude" },
+            { icon: FaTerminal, name: "Cursor" },
+            { icon: SiOpenai, name: "Codex" },
+        ],
+    },
+    {
         title: "AI & Machine Learning",
         description: "Agents, retrieval, and models in production.",
         skills: [
@@ -154,6 +210,7 @@ export const skillCategories = [
         title: "Languages",
         description: "Day-to-day tools of the trade.",
         skills: [
+            { icon: SiGo, name: "Go" },
             { icon: FaPython, name: "Python" },
             { icon: FaJs, name: "JavaScript" },
             { icon: SiSwift, name: "Swift" },
@@ -163,8 +220,8 @@ export const skillCategories = [
         title: "Cloud & DevOps",
         description: "Serverless and containerized infrastructure.",
         skills: [
-            { icon: FaAws, name: "AWS" },
             { icon: SiGooglecloud, name: "Google Cloud" },
+            { icon: FaAws, name: "AWS" },
             { icon: SiMicrosoftazure, name: "Azure" },
             { icon: FaDocker, name: "Docker" },
             { icon: SiKubernetes, name: "Kubernetes" },
