@@ -5,22 +5,28 @@ import Reveal from "../components/Reveal";
 import { FiMapPin } from "react-icons/fi";
 
 const facts = [
-    { label: "Currently", value: "Accenture Federal Services" },
+    { label: "Currently", value: "Backend Engineer, Takt" },
+    { label: "Previously", value: "Accenture Federal Services · GDIT" },
     { label: "Education", value: "B.S. Computer Science, Virginia Tech" },
-    { label: "Focus", value: "LLM agents · ML · Data platforms" },
+    { label: "Focus", value: "Streaming data · Go · Distributed systems" },
 ];
 
 const About = () => (
     <section id="about" className="py-24 sm:py-32">
         <div className="container-page">
-            <SectionHeading index="01" eyebrow="About" title="Engineering at the intersection of AI and public service." />
+            <SectionHeading index="01" eyebrow="About" title="Building the real-time backbone of modern software." />
 
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
                 <Reveal className="space-y-5 text-base leading-relaxed text-zinc-400 sm:text-lg lg:col-span-7">
                     <p>
-                        Hello! I'm currently a <span className="text-zinc-100">Data &amp; AI Solutions Architect at Accenture Federal Services</span>,
-                        where I build LLM-powered agents, ML systems, and analytics platforms that support over 14 million users in
-                        the public sector.
+                        Hello! I'm a <span className="text-zinc-100">backend engineer at Takt</span>, where we're building a modern
+                        workforce platform that benefits from AI without relying on it. I architected and built our real-time data
+                        streaming pipelines on Google Cloud, which process around a billion rows a day, along with our notification,
+                        gamification, and Learning Curve systems.
+                    </p>
+                    <p>
+                        Before Takt, I was a Data &amp; AI Solutions Architect at Accenture Federal Services, where I shipped
+                        LLM-powered agents and ML systems that supported over 14 million users in the public sector.
                     </p>
                     <p>
                         My journey in computer science began as a kid, when I first discovered WordPress and built a website for a
@@ -59,7 +65,7 @@ const About = () => (
                             <figcaption className="absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-xl border border-white/10 bg-ink-950/70 px-4 py-3 backdrop-blur-md">
                                 <span className="text-sm font-medium text-white">Ashaz Ahmed</span>
                                 <span className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
-                                    <FiMapPin aria-hidden="true" /> Arlington, VA
+                                    <FiMapPin aria-hidden="true" /> Northern Virginia
                                 </span>
                             </figcaption>
                         </div>
