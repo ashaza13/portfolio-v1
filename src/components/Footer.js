@@ -1,24 +1,37 @@
 import React from "react";
-import { GoMarkGithub } from "react-icons/go";
-import StickySocials from "./StickySocials";
+import { socials } from "../data";
 
-const Footer = () => {
-    return (
-        <footer className="relative flex justify-center items-center z-0 py-6 sm:py-8 px-4">
-            <StickySocials />
-            <div className="max-w-lg my-4 sm:my-8 text-center m-auto">
-                <a 
-                    href="https://github.com/ashaza13/portfolio-v1" 
-                    target="_blank" 
+const Footer = () => (
+    <footer className="border-t border-white/[0.06]">
+        <div className="container-page flex flex-col items-center justify-between gap-6 py-10 sm:flex-row">
+            <p className="text-sm text-zinc-500">
+                © {new Date().getFullYear()} Ashaz Ahmed ·{" "}
+                <a
+                    href="https://github.com/ashaza13/portfolio-v1"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-center transition duration-500 text-lightGray font-bold text-xs sm:text-sm hover:text-orange-600 flex items-center justify-center gap-2"
+                    className="underline decoration-white/20 underline-offset-4 transition-colors hover:text-zinc-300"
                 >
-                    Designed & Built by Ashaz Ahmed 
-                    <GoMarkGithub className="text-sm sm:text-base" />
+                    View source
                 </a>
-            </div>
-        </footer>
-    );
-};
+            </p>
+            <ul className="flex items-center gap-1">
+                {socials.map(({ name, href, icon: Icon }) => (
+                    <li key={name}>
+                        <a
+                            href={href}
+                            target={href.startsWith("mailto:") ? undefined : "_blank"}
+                            rel="noopener noreferrer"
+                            aria-label={name}
+                            className="icon-btn border-transparent"
+                        >
+                            <Icon className="h-4 w-4" />
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </footer>
+);
 
 export default Footer;
