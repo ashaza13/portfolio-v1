@@ -1,80 +1,73 @@
 import React from "react";
 import ashaz from "../static/images/ashaz.jpg";
-import { motion } from "framer-motion";
+import SectionHeading from "../components/SectionHeading";
+import Reveal from "../components/Reveal";
+import { FiMapPin } from "react-icons/fi";
 
-const About = () => {
-    return (
-        <section id="about" className="relative py-16 sm:py-20 lg:py-24 xl:py-32 scroll-mt-20 bg-gradient-to-b from-slate to-palantir-dark">
-            
-            <motion.div
-                initial={{ opacity:0, y: 50}}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, type: "tween" }}
-            >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Section Header */}
-                    <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">About Me</h2>
-                        <div className="w-24 h-0.5 bg-gradient-to-r from-blue-light to-palantir-blue mx-auto animate-subtle-pulse"></div>
-                    </div>
+const facts = [
+    { label: "Currently", value: "Accenture Federal Services" },
+    { label: "Education", value: "B.S. Computer Science, Virginia Tech" },
+    { label: "Focus", value: "LLM agents · ML · Data platforms" },
+];
 
-                    {/* Main Content */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 xl:gap-20 items-center">
-                        {/* Left - About Me Text */}
-                        <div className="order-2 lg:order-1">
-                            <div className="glass-morphism rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 hover:bg-palantir-blue/10 transition-all duration-500 group">
-                                <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6 gradient-text-accent">
-                                    Software Engineer & Problem Solver
-                                </h3>
-                                
-                                <div className="space-y-4 sm:space-y-5 text-sm sm:text-base text-palantir-light leading-relaxed">
-                                    <p className="group-hover:text-white transition-colors duration-300">
-                                        Hello! I'm currently a <span className="text-blue-light font-semibold">Software Engineer at Accenture</span>, 
-                                        where I develop LLM-powered agents and analytics platforms that support over 14 million users in the public sector.
-                                    </p>
-                                    
-                                    <p className="group-hover:text-white transition-colors duration-300">
-                                        My journey in Computer Science began as a child when I was first exposed to WordPress and 
-                                        created a website for a science fair. That spark ignited a passion that has only grown stronger.
-                                    </p>
-                                    
-                                    <p className="group-hover:text-white transition-colors duration-300">
-                                        I obtained my degree in <span className="text-blue-light font-semibold">Computer Science from Virginia Tech</span> 
-                                        and continue to work on exciting projects that push the boundaries of what's possible with technology.
-                                    </p>
-                                </div>
+const About = () => (
+    <section id="about" className="py-24 sm:py-32">
+        <div className="container-page">
+            <SectionHeading index="01" eyebrow="About" title="Engineering at the intersection of AI and public service." />
 
-                                {/* Skills Pills */}
-                                <div className="flex flex-wrap gap-2 mt-6 sm:mt-8">
-                                    {['JavaScript', 'React', 'Python', 'AI/ML', 'Cloud Computing'].map((skill) => (
-                                        <span 
-                                            key={skill}
-                                            className="px-2.5 sm:px-3 py-1 glass-effect-dark text-palantir-light text-xs sm:text-sm rounded-lg hover:bg-palantir-blue/20 hover:text-blue-light transition-all duration-300 cursor-default"
-                                        >
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+                <Reveal className="space-y-5 text-base leading-relaxed text-zinc-400 sm:text-lg lg:col-span-7">
+                    <p>
+                        Hello! I'm currently a <span className="text-zinc-100">Data &amp; AI Solutions Architect at Accenture Federal Services</span>,
+                        where I build LLM-powered agents, ML systems, and analytics platforms that support over 14 million users in
+                        the public sector.
+                    </p>
+                    <p>
+                        My journey in computer science began as a kid, when I first discovered WordPress and built a website for a
+                        science fair. That spark turned into a passion that has only grown stronger.
+                    </p>
+                    <p>
+                        I earned my degree in <span className="text-zinc-100">Computer Science from Virginia Tech</span> and keep
+                        working on projects that push what's possible with technology.
+                    </p>
+
+                    <dl className="!mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
+                        {facts.map((fact) => (
+                            <div key={fact.label} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+                                <dt className="w-28 shrink-0 font-mono text-xs uppercase tracking-[0.15em] text-zinc-500">
+                                    {fact.label}
+                                </dt>
+                                <dd className="text-base text-zinc-200">{fact.value}</dd>
                             </div>
+                        ))}
+                    </dl>
+                </Reveal>
+
+                <Reveal delay={0.1} className="lg:col-span-5">
+                    <figure className="group relative mx-auto max-w-sm lg:ml-auto">
+                        <div
+                            className="absolute -inset-px rounded-[1.75rem] bg-gradient-to-b from-accent/50 via-white/10 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"
+                            aria-hidden="true"
+                        />
+                        <div className="relative overflow-hidden rounded-[1.7rem] bg-ink-900 p-2">
+                            <img
+                                src={ashaz}
+                                alt="Portrait of Ashaz Ahmed"
+                                loading="lazy"
+                                className="aspect-[4/5] w-full rounded-[1.35rem] object-cover grayscale-[30%] transition-all duration-700 group-hover:grayscale-0"
+                            />
+                            <figcaption className="absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-xl border border-white/10 bg-ink-950/70 px-4 py-3 backdrop-blur-md">
+                                <span className="text-sm font-medium text-white">Ashaz Ahmed</span>
+                                <span className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+                                    <FiMapPin aria-hidden="true" /> Arlington, VA
+                                </span>
+                            </figcaption>
                         </div>
-                        
-                        {/* Right - Picture */}
-                        <div className="order-1 lg:order-2 flex justify-center">
-                            <div className="relative group">
-                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-light to-palantir-blue rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 animate-palantir-glow"></div>
-                                <img 
-                                    src={ashaz} 
-                                    alt="Ashaz Ahmed" 
-                                    className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 object-cover rounded-xl sm:rounded-2xl border border-palantir-blue/30 transition-all duration-500 group-hover:scale-105" 
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
-        </section>
-    )
-};
+                    </figure>
+                </Reveal>
+            </div>
+        </div>
+    </section>
+);
 
 export default About;
