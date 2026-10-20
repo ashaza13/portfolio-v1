@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FiArrowRight, FiArrowDown } from "react-icons/fi";
-import { socials, stats } from "../data";
+import { socials } from "../data";
 
 const fadeUp = (delay) => ({
     initial: { opacity: 0, y: 20 },
@@ -74,19 +74,6 @@ const Hero = () => (
                         ))}
                 </div>
             </motion.div>
-
-            <motion.dl
-                {...fadeUp(0.32)}
-                className="mt-16 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3"
-            >
-                {stats.map((stat) => (
-                    <div key={stat.label} className="bg-ink-950/90 px-5 py-5 backdrop-blur">
-                        <dt className="sr-only">{stat.label}</dt>
-                        <dd className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">{stat.value}</dd>
-                        <dd className="mt-1 text-sm text-zinc-500">{stat.label}</dd>
-                    </div>
-                ))}
-            </motion.dl>
         </div>
 
         <a

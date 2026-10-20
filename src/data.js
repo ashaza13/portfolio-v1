@@ -52,12 +52,6 @@ export const navigation = [
     { name: "Contact", id: "contact" },
 ];
 
-export const stats = [
-    { value: "~1B", label: "rows streamed daily through my pipelines" },
-    { value: "10", label: "real-time Dataflow pipelines built" },
-    { value: "14M+", label: "users served by an LLM chatbot I shipped" },
-];
-
 export const experiences = [
     {
         company: "Takt",
