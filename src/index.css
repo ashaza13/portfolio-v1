@@ -11,7 +11,6 @@
 
   body {
     @apply bg-ink font-sans text-paper antialiased;
-    font-feature-settings: 'tnum' 1, 'ss01' 1;
     overflow-x: hidden;
   }
 
@@ -20,7 +19,11 @@
   }
 
   section[id] {
-    scroll-margin-top: 4rem;
+    scroll-margin-top: 3.25rem;
+  }
+
+  a:hover {
+    @apply text-accent;
   }
 
   :focus-visible {
@@ -36,7 +39,7 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-10;
   }
 
   /* 4 columns on phones, 12 from md up. */
@@ -44,57 +47,144 @@
     @apply grid grid-cols-4 gap-x-4 md:grid-cols-12 md:gap-x-6;
   }
 
-  .heading-2 {
-    @apply font-display text-[2rem] font-semibold leading-[1.02] tracking-heading sm:text-[2.6rem] lg:text-[3.25rem];
+  /* Small uppercase data label. */
+  .label {
+    @apply font-mono text-xs uppercase tracking-[0.02em] tabular-nums;
   }
 
-  .btn {
-    @apply inline-flex h-12 items-center justify-center gap-2.5 border px-[22px] text-[15px] transition-colors duration-300 ease-swiss;
+  .row-hover {
+    @apply transition-colors duration-500 ease-swiss hover:bg-[#141414];
   }
 
-  .btn-solid {
-    @apply btn border-paper bg-paper text-ink hover:bg-ink hover:text-paper;
+  /* Big email link: an orange underline draws in on hover. */
+  .mail-link {
+    background: linear-gradient(theme('colors.accent'), theme('colors.accent')) 0 100% / 0 3px no-repeat;
+    transition: background-size 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .btn-line {
-    @apply btn border-paper text-paper hover:bg-paper hover:text-ink;
-  }
-
-  .btn-line-dark {
-    @apply btn border-ink text-ink hover:bg-ink hover:text-paper;
-  }
-
-  /* Underline that draws in from the left, in the accent color. */
-  .link-draw {
-    background: linear-gradient(theme('colors.accent'), theme('colors.accent')) 0 100% / 0 1px no-repeat;
-    transition: background-size 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
-  }
-
-  .link-draw:hover,
-  .link-draw[aria-current='true'] {
-    background-size: 100% 1px;
-  }
-
-  /* Grayscale images that come to color on hover of a .group parent. */
-  .img-swiss {
-    filter: grayscale(1) brightness(0.88);
-    transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .group:hover .img-swiss {
-    filter: grayscale(0) brightness(1);
-    transform: scale(1.025);
+  .mail-link:hover {
+    @apply text-paper;
+    background-size: 100% 3px;
   }
 }
 
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+/* ---------- Flow field: rows stream through a Beam / Dataflow gate ---------- */
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+/*
+ * Each point is a full-lane-width track that slides across with translateX(0 → 100%),
+ * so the motion stays on the compositor. The dot inside runs a second animation with
+ * the same duration and delay for its color and the pulse at the gate.
+ */
+.flow-track {
+  position: absolute;
+  inset: 0;
+  animation: flow-move var(--dur) linear var(--delay) infinite;
+  will-change: transform, opacity;
+}
+
+.flow-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 9999px;
+  background: #5a5a5a;
+  animation: flow-pass var(--dur) linear var(--delay) infinite;
+}
+
+.flow-track.is-agg {
+  animation-name: flow-move-agg;
+}
+
+.flow-track.is-agg .flow-dot {
+  animation-name: flow-pass-agg;
+}
+
+.flow-track.is-insight .flow-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  animation-name: flow-pass-insight;
+}
+
+@keyframes flow-move {
+  0% { transform: translateX(0); opacity: 0; }
+  4% { opacity: 1; }
+  96% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Aggregated rows: absorbed shortly after the gate. */
+@keyframes flow-move-agg {
+  0% { transform: translateX(0); opacity: 0; }
+  4% { opacity: 1; }
+  51% { opacity: 0.9; }
+  60% { transform: translateX(60%); opacity: 0; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes flow-pass {
+  0%, 49% { background: #5a5a5a; transform: scale(1); }
+  51% { background: #f5f5f5; transform: scale(1.5); }
+  54%, 100% { background: #f5f5f5; transform: scale(1); }
+}
+
+@keyframes flow-pass-agg {
+  0%, 49% { background: #5a5a5a; }
+  51%, 100% { background: #8f8f8f; }
+}
+
+@keyframes flow-pass-insight {
+  0%, 49% { background: #5a5a5a; transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 90, 31, 0); }
+  51% { background: #ff5a1f; transform: scale(1.6); box-shadow: 0 0 0 6px rgba(255, 90, 31, 0.18); }
+  60%, 100% { background: #ff5a1f; transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 90, 31, 0); }
+}
+
+/* Insight feed: four lines that take turns sliding up. */
+.feed-item {
+  opacity: 0;
+  animation: feed 12.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes feed {
+  0% { opacity: 0; transform: translateY(100%); }
+  3%, 22% { opacity: 1; transform: none; }
+  25% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1.6s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.fade-in {
+  animation: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(1.03); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Freeze the flow mid-stream so it still reads as a picture. */
+  .flow-track,
+  .flow-dot {
+    animation-play-state: paused;
+  }
+  .feed-item,
+  .blink,
+  .fade-in {
+    animation: none;
+  }
+  .feed-item:first-child {
+    opacity: 1;
   }
 }
 

@@ -1,127 +1,101 @@
 import React, { useState } from "react";
-import SectionHeading from "../components/SectionHeading";
-import Reveal from "../components/Reveal";
-import Rule from "../components/Rule";
+import SectionHeader from "../components/SectionHeader";
 import { projects } from "../data";
 
-const ProjectImage = ({ project, className = "" }) => {
-    const [failed, setFailed] = useState(false);
-    const href = project.externalURL || project.link;
-    const inner = failed ? (
-        <span className="flex h-full w-full items-center justify-center font-display text-5xl font-semibold tracking-[-0.05em] sm:text-7xl">
-            {project.name}
-        </span>
-    ) : (
-        <img
-            onError={() => setFailed(true)}
-            src={project.image}
-            alt={`Screenshot of ${project.name}`}
-            loading="lazy"
-            className="img-swiss h-full w-full object-cover object-top"
-        />
-    );
-    const box = `block overflow-hidden border border-line bg-surface ${className}`;
-    return href ? (
-        <a href={href} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true" className={box}>
-            {inner}
-        </a>
-    ) : (
-        <div className={box}>{inner}</div>
+const Preview = ({ project }) => {
+    const [failed, setFailed] = useState({});
+    const showImage = project.image && !failed[project.name];
+    return (
+        <div className="relative aspect-[16/10] overflow-hidden border border-line bg-surface">
+            {showImage ? (
+                <img
+                    key={project.name}
+                    src={project.image}
+                    alt={`Screenshot of ${project.name}`}
+                    onError={() => setFailed((f) => ({ ...f, [project.name]: true }))}
+                    className="fade-in h-full w-full object-cover object-top"
+                />
+            ) : (
+                <span className="absolute inset-0 flex items-center justify-center text-6xl font-semibold tracking-[-0.05em]">
+                    {project.name}
+                </span>
+            )}
+        </div>
     );
 };
 
-const ProjectLinks = ({ project }) => (
-    <span className="flex gap-4 text-[13px] text-muted">
+const Links = ({ project }) => (
+    <span className="label flex gap-5">
         {project.externalURL && (
-            <a
-                href={project.externalURL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visit ${project.name}`}
-                className="link-draw hover:text-paper"
-            >
-                Live ↗
+            <a href={project.externalURL} target="_blank" rel="noopener noreferrer">
+                Visit ↗
             </a>
         )}
         {project.link && (
-            <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.name} source code on GitHub`}
-                className="link-draw hover:text-paper"
-            >
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
                 Code ↗
             </a>
         )}
     </span>
 );
 
+// A numbered index; hovering or focusing a row swaps the preview pane.
 const Projects = () => {
-    const [featured, ...rest] = projects;
+    const [active, setActive] = useState(0);
+    const current = projects[active];
 
     return (
-        <section id="work" className="container-page py-24 sm:py-32">
-            <SectionHeading
-                index="04"
-                label="Selected work"
-                title="From production iOS apps to autonomous-driving simulations."
-            />
-
-            {/* Featured project */}
-            <Rule />
-            <Reveal as="article" className="group grid-12 gap-y-6 pt-6">
-                <div className="col-span-full flex flex-col gap-2 text-sm md:col-span-3">
-                    <span className="font-semibold">Featured</span>
-                    <span className="text-muted">{featured.duration}</span>
-                    {featured.isAppStore && <span className="text-muted">App Store</span>}
-                </div>
-                <div className="col-span-full flex flex-col gap-7 md:col-span-9">
-                    <ProjectImage project={featured} className="aspect-[16/9]" />
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-9 sm:gap-6">
-                        <h3 className="font-display text-[2rem] font-semibold tracking-[-0.03em] sm:col-span-4">
-                            {featured.name}
-                        </h3>
-                        <div className="flex flex-col gap-4 sm:col-span-5">
-                            <p className="leading-relaxed text-body">{featured.description}</p>
-                            <p className="text-[13px] text-muted">{featured.technologies.join(" / ")}</p>
-                            {featured.externalURL && (
-                                <a
-                                    href={featured.externalURL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="link-draw self-start text-[15px] font-medium"
+        <section id="work" className="container-page pb-28">
+            <SectionHeader index="03" title="Work" note="Hover a row" />
+            <div className="grid-12 items-start gap-y-8">
+                <ol className="col-span-full border-t border-line md:col-span-7">
+                    {projects.map((p, i) => {
+                        const on = i === active;
+                        return (
+                            <li key={p.name} className="border-b border-hair">
+                                <button
+                                    type="button"
+                                    onMouseEnter={() => setActive(i)}
+                                    onFocus={() => setActive(i)}
+                                    onClick={() => setActive(i)}
+                                    aria-expanded={on}
+                                    className={`grid w-full grid-cols-[40px_1fr_auto_24px] items-baseline gap-4 py-5 text-left transition-colors duration-500 ease-swiss ${
+                                        on ? "text-paper" : "text-muted hover:text-paper"
+                                    }`}
                                 >
-                                    Visit site ↗
-                                </a>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </Reveal>
+                                    <span className="font-mono text-[13px]">{String(i + 1).padStart(2, "0")}</span>
+                                    <span className="text-2xl font-medium tracking-[-0.03em] lg:text-[38px]">
+                                        {p.name}
+                                    </span>
+                                    <span className="font-mono text-[13px]">{p.duration.replace("Present", "")}</span>
+                                    <span
+                                        aria-hidden="true"
+                                        className={`text-lg text-accent transition-all duration-500 ease-swiss ${
+                                            on ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                                        }`}
+                                    >
+                                        →
+                                    </span>
+                                </button>
+                                {/* On phones the details open under the row instead of in a side pane. */}
+                                {on && (
+                                    <div className="fade-in flex flex-col gap-3 pb-6 pl-14 md:hidden">
+                                        <p className="text-[15px] leading-relaxed text-body">{p.description}</p>
+                                        <p className="label text-muted">{p.technologies.join(" · ")}</p>
+                                        <Links project={p} />
+                                    </div>
+                                )}
+                            </li>
+                        );
+                    })}
+                </ol>
 
-            {/* Remaining projects */}
-            <div className="mt-24 grid grid-cols-1 gap-x-6 gap-y-16 md:grid-cols-2">
-                {rest.map((project, i) => (
-                    <Reveal
-                        key={project.name}
-                        delay={(i % 2) * 0.08}
-                        as="article"
-                        className="group flex flex-col gap-4 border-t border-paper pt-4"
-                    >
-                        <div className="flex justify-between text-[13px] text-muted">
-                            <span>{String(i + 2).padStart(2, "0")}</span>
-                            <span>{project.duration}</span>
-                        </div>
-                        <ProjectImage project={project} className="aspect-[16/9]" />
-                        <div className="flex items-baseline justify-between gap-4">
-                            <h3 className="font-display text-2xl font-semibold tracking-[-0.025em]">{project.name}</h3>
-                            <ProjectLinks project={project} />
-                        </div>
-                        <p className="max-w-[36em] text-[15px] leading-relaxed text-body">{project.description}</p>
-                        <p className="text-[13px] text-muted">{project.technologies.join(" / ")}</p>
-                    </Reveal>
-                ))}
+                <div className="sticky top-[76px] hidden flex-col gap-4 md:col-span-5 md:flex">
+                    <Preview project={current} />
+                    <p className="leading-relaxed text-body">{current.description}</p>
+                    <p className="label text-muted">{current.technologies.join(" · ")}</p>
+                    <Links project={current} />
+                </div>
             </div>
         </section>
     );

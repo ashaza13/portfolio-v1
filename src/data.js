@@ -1,35 +1,3 @@
-import {
-    FaPython,
-    FaJs,
-    FaReact,
-    FaAws,
-    FaLinux,
-    FaDocker,
-    FaGitAlt,
-    FaRobot,
-    FaLink,
-    FaDatabase,
-    FaServer,
-    FaStream,
-    FaTerminal,
-} from "react-icons/fa";
-import {
-    SiGooglecloud,
-    SiMicrosoftazure,
-    SiSwift,
-    SiTensorflow,
-    SiPytorch,
-    SiKubernetes,
-    SiPostgresql,
-    SiOpenai,
-    SiScikitlearn,
-    SiGo,
-    SiApache,
-    SiTwilio,
-    SiSocketdotio,
-} from "react-icons/si";
-import { FiGithub, FiLinkedin, FiCamera, FiMail } from "react-icons/fi";
-
 import symbiotamap from "./static/images/symbiotamap.png";
 import splices from "./static/images/splices.png";
 import chase from "./static/images/chase.png";
@@ -38,79 +6,100 @@ import firebase from "./static/images/firebase.png";
 export const EMAIL = "ahmed.ashaz9@gmail.com";
 
 export const socials = [
-    { name: "GitHub", href: "https://github.com/ashaza13", icon: FiGithub },
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/ashaz-ahmed/", icon: FiLinkedin },
-    { name: "Photography", href: "https://ahmedashaz9b9f3.myportfolio.com/", icon: FiCamera },
-    { name: "Email", href: `mailto:${EMAIL}`, icon: FiMail },
+    { name: "GitHub", href: "https://github.com/ashaza13" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/ashaz-ahmed/" },
+    { name: "Photography", href: "https://ahmedashaz9b9f3.myportfolio.com/" },
 ];
 
 export const navigation = [
-    { name: "About", id: "about" },
-    { name: "Skills", id: "skills" },
-    { name: "Experience", id: "experience" },
-    { name: "Projects", id: "work" },
+    { name: "Systems", id: "systems" },
+    { name: "Record", id: "record" },
+    { name: "Work", id: "work" },
     { name: "Contact", id: "contact" },
 ];
 
-export const facts = [
-    { value: "10", label: "Real-time pipelines" },
-    { value: "~100M", label: "Rows per day, each" },
-    { value: "14M+", label: "Users supported" },
-    { value: "1.4M", label: "Support calls handled" },
+// Pipeline throughput used by the hero estimate: ten pipelines at ~100M rows/day each.
+export const PIPELINES = 10;
+export const ROWS_PER_PIPELINE_PER_DAY = 100_000_000;
+
+// Examples of the kinds of insight the systems below produce (illustrative, not live data).
+export const insights = [
+    { title: "Alert sent", detail: "a threshold tripped, pushed over WebSockets + SMS" },
+    { title: "Leaderboard moved", detail: "live performance, re-ranked" },
+    { title: "Ramp-up curve updated", detail: "how fast a new hire is getting there" },
+    { title: "Metrics refreshed", detail: "a customer dashboard, seconds behind reality" },
 ];
 
-export const experiences = [
+export const systems = [
     {
-        company: "Takt",
-        position: "Backend Engineer",
-        duration: "2025 — Present",
-        location: "Reston, VA",
-        responsibilities: [
-            "Built all of Takt's real-time data streaming pipelines in Python with Apache Beam on Google Cloud Dataflow. Ten pipelines each process around 100 million rows a day, significantly improving system performance and giving customers real-time, data-driven insights.",
-            "Architected and built the notification system end to end in Go, delivering real-time alerts over WebSockets and SMS through Twilio.",
-            "Architected and built the gamification system in Go and Dataflow, turning live performance data into engagement features.",
-            "Architected and built the Learning Curve system in Go, giving managers insight into how quickly new employees ramp up.",
-            "Work daily with AI-assisted tools like Claude, Cursor, and Codex to help build a modern platform that benefits from AI without relying on it.",
-        ],
-        tags: ["Go", "Python", "Apache Beam", "Dataflow", "BigQuery", "Spanner", "WebSockets", "Twilio"],
+        name: "Streaming pipelines ×10",
+        language: "Python, Apache Beam",
+        runsOn: "Dataflow, BigQuery, Spanner",
+        insight: "Live operational metrics for every customer (~100M rows / day, each)",
     },
     {
-        company: "Accenture Federal Services",
-        position: "Data & AI Solutions Architect",
-        duration: "2024 — 2025",
-        location: "Arlington, VA",
-        responsibilities: [
-            "Developed a serverless data analytics platform in AWS SageMaker Studio, used by 100+ users, improving accessibility and reducing Python package installation time from 2 months to 2 weeks.",
-            "Built an ML data anomaly detection system using a tabular autoencoder model, increasing anomaly detection accuracy by 90% and replacing a manual process with proactive alerts for stakeholders, developed with PyTorch, AWS SageMaker, and Oracle Database technology.",
-            "Designed and deployed an LLM-powered support agent using AWS Lambda, OpenSearch, and GPT-4o, reducing FAFSA issue resolution time by 90% and handling 1.4 million support calls while reducing human agent workload.",
-            "Deployed a customer-facing LLM chatbot using AWS Lambda, EventBridge, Kendra, and LangChain, assisting 14 million users in understanding financial aid loan statuses and troubleshooting FAFSA form issues.",
-        ],
-        tags: ["AWS SageMaker", "PyTorch", "LangChain", "GPT-4o", "OpenSearch"],
+        name: "Notifications",
+        language: "Go",
+        runsOn: "WebSockets, Twilio",
+        insight: "The moment something needs attention, as push or SMS",
     },
     {
-        company: "GDIT",
-        position: "Software Developer Associate",
-        duration: "2022 — 2023",
-        location: "Falls Church, VA (remote)",
-        responsibilities: [
-            "Worked on the ISEE contract with the Defense Intelligence Agency (DIA) concerning the automation of admin account creation along with identity, credential, and access management (ICAM) for all other users.",
-            "Collaborated with and led a team of 3 software developer interns to write and document PowerShell scripts automating the migration of thousands of overseas Department of Defense employees' MS Exchange email accounts to improve overall security.",
-            "Engaged with stakeholders throughout the company to deliver regular progress updates, manage expectations, and build transparency across the organization.",
-        ],
-        tags: ["PowerShell", "ICAM", "MS Exchange"],
+        name: "Gamification",
+        language: "Go, Beam",
+        runsOn: "Dataflow",
+        insight: "Where you stand right now, from live performance",
     },
     {
-        company: "HEVT",
-        position: "Undergraduate Researcher",
-        duration: "2022 — 2024",
-        location: "Blacksburg, VA",
-        responsibilities: [
-            "Conducted research for the Cadillac Lyriq EcoCAR 4-year design competition sponsored by General Motors.",
-            "Designed and researched different connected and automated vehicle systems (CAVs) to improve overall fuel efficiency.",
-            "Developed autonomous vehicle driving scenarios using tools such as MATLAB, Simulink, and TensorFlow.",
-        ],
-        tags: ["MATLAB", "Simulink", "TensorFlow"],
+        name: "Learning Curve",
+        language: "Go",
+        runsOn: "Google Cloud",
+        insight: "How quickly each new hire is ramping up",
     },
+];
+
+// Newest first. `to: null` marks the current role.
+export const record = [
+    {
+        from: "2025",
+        to: null,
+        org: "Takt",
+        role: "Backend Engineer",
+        where: "Reston, VA",
+        note: "All real-time pipelines, plus notifications, gamification and Learning Curve.",
+    },
+    {
+        from: "2024",
+        to: "2025",
+        org: "Accenture Federal",
+        role: "Data & AI Solutions Architect",
+        where: "Arlington, VA",
+        note: "LLM support agent: 1.4M calls. Chatbot for 14M FAFSA users.",
+    },
+    {
+        from: "2022",
+        to: "2024",
+        org: "HEVT",
+        role: "Undergraduate Researcher",
+        where: "Blacksburg, VA",
+        note: "GM EcoCAR: connected and automated vehicle research.",
+    },
+    {
+        from: "2022",
+        to: "2023",
+        org: "GDIT",
+        role: "Software Developer Associate",
+        where: "Falls Church, VA",
+        note: "ICAM automation for the DIA; led 3 interns.",
+    },
+];
+
+export const stack = [
+    { label: "Daily", value: "Go, Python, Apache Beam, Dataflow, BigQuery, Spanner" },
+    { label: "Realtime", value: "WebSockets, Twilio" },
+    { label: "AI / ML", value: "OpenAI, LangChain, LangGraph, AWS Bedrock, PyTorch, TensorFlow, scikit-learn" },
+    { label: "Cloud", value: "Google Cloud, AWS, Azure, Docker, Kubernetes" },
+    { label: "Also", value: "JavaScript, React, Swift, UIKit, PostgreSQL, Linux, Git" },
+    { label: "With", value: "Claude, Cursor, Codex" },
 ];
 
 export const projects = [
@@ -165,84 +154,5 @@ export const projects = [
         image: firebase,
         externalURL: "",
         duration: "2022",
-    },
-];
-
-export const skillCategories = [
-    {
-        title: "Backend & Data Streaming",
-        description: "Real-time pipelines and services at scale.",
-        skills: [
-            { icon: SiGo, name: "Go" },
-            { icon: FaPython, name: "Python" },
-            { icon: SiApache, name: "Apache Beam" },
-            { icon: FaStream, name: "Dataflow" },
-            { icon: FaDatabase, name: "BigQuery" },
-            { icon: FaServer, name: "Spanner" },
-            { icon: SiSocketdotio, name: "WebSockets" },
-            { icon: SiTwilio, name: "Twilio" },
-        ],
-        wide: true,
-    },
-    {
-        title: "AI-Assisted Development",
-        description: "Tools that speed up how I build.",
-        skills: [
-            { icon: FaTerminal, name: "Claude" },
-            { icon: FaTerminal, name: "Cursor" },
-            { icon: SiOpenai, name: "Codex" },
-        ],
-    },
-    {
-        title: "AI & Machine Learning",
-        description: "Agents, retrieval, and models in production.",
-        skills: [
-            { icon: SiOpenai, name: "OpenAI" },
-            { icon: FaLink, name: "LangChain" },
-            { icon: FaRobot, name: "LangGraph" },
-            { icon: FaAws, name: "AWS Bedrock" },
-            { icon: SiPytorch, name: "PyTorch" },
-            { icon: SiTensorflow, name: "TensorFlow" },
-            { icon: SiScikitlearn, name: "Scikit-learn" },
-        ],
-        wide: true,
-    },
-    {
-        title: "Languages",
-        description: "Day-to-day tools of the trade.",
-        skills: [
-            { icon: SiGo, name: "Go" },
-            { icon: FaPython, name: "Python" },
-            { icon: FaJs, name: "JavaScript" },
-            { icon: SiSwift, name: "Swift" },
-        ],
-    },
-    {
-        title: "Cloud & DevOps",
-        description: "Serverless and containerized infrastructure.",
-        skills: [
-            { icon: SiGooglecloud, name: "Google Cloud" },
-            { icon: FaAws, name: "AWS" },
-            { icon: SiMicrosoftazure, name: "Azure" },
-            { icon: FaDocker, name: "Docker" },
-            { icon: SiKubernetes, name: "Kubernetes" },
-        ],
-    },
-    {
-        title: "Frontend",
-        description: "Interfaces for web and mobile.",
-        skills: [
-            { icon: FaReact, name: "React" },
-            { icon: SiSwift, name: "UIKit" },
-        ],
-    },
-    {
-        title: "Data & Tools",
-        description: "Storage, versioning, environments.",
-        skills: [
-            { icon: SiPostgresql, name: "PostgreSQL" },
-            { icon: FaGitAlt, name: "Git" },
-            { icon: FaLinux, name: "Linux" },
-        ],
     },
 ];

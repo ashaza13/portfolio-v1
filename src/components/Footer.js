@@ -1,39 +1,33 @@
 import React from "react";
-import { socials } from "../data";
+
+// Filled in at build time (see the build script in package.json); hidden when unavailable.
+const COMMIT = (process.env.REACT_APP_COMMIT || "").slice(0, 7);
+const BUILT = process.env.REACT_APP_BUILT_AT || "";
 
 const Footer = () => (
-    <footer className="bg-paper text-ink">
-        <div className="container-page grid-12 items-center gap-y-4 py-8 text-sm">
-            <p className="col-span-full text-band-muted md:col-span-3">
-                © {new Date().getFullYear()} Ashaz Ahmed
-            </p>
-            <ul className="col-span-full flex flex-wrap gap-x-6 gap-y-2 md:col-span-6 lg:col-span-5">
-                {socials.map(({ name, href }) => (
-                    <li key={name}>
+    <footer className="border-t border-line">
+        <div className="container-page label flex flex-wrap justify-between gap-3 py-5 text-muted">
+            <span>
+                {COMMIT ? (
+                    <>
+                        Build{" "}
                         <a
-                            href={href}
-                            target={href.startsWith("mailto:") ? undefined : "_blank"}
+                            href={`https://github.com/ashaza13/portfolio-v1/commit/${COMMIT}`}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            className="link-draw hover:text-band-muted"
                         >
-                            {name}
+                            {COMMIT}
                         </a>
-                    </li>
-                ))}
-            </ul>
-            <div className="col-span-full flex gap-6 md:col-span-3 md:justify-end lg:col-span-4">
-                <a
-                    href="https://github.com/ashaza13/portfolio-v1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-draw hover:text-band-muted"
-                >
-                    Source
-                </a>
-                <a href="#top" className="link-draw hover:text-band-muted">
-                    Back to top ↑
-                </a>
-            </div>
+                        {BUILT && ` · deployed ${BUILT}`}
+                    </>
+                ) : (
+                    <a href="https://github.com/ashaza13/portfolio-v1" target="_blank" rel="noopener noreferrer">
+                        Source ↗
+                    </a>
+                )}
+            </span>
+            <span className="hidden sm:inline">Set in Schibsted Grotesk + JetBrains Mono</span>
+            <span>© {new Date().getFullYear()} Ashaz Ahmed</span>
         </div>
     </footer>
 );

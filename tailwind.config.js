@@ -10,29 +10,17 @@ module.exports = {
         body: '#bdbdbd',
         muted: '#8f8f8f',
         line: '#2e2e2e',
-        hair: '#222222',
+        hair: '#1f1f1f',
+        dim: '#5a5a5a',
         surface: '#161616',
         accent: '#ff5a1f',
-        // Used on the inverted (light) bands.
-        band: {
-          body: '#404040',
-          muted: '#5e5e5e',
-          line: '#d4d4d4',
-        },
       },
       fontFamily: {
-        sans: ['Inter', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        display: ['"Inter Tight"', 'Inter', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-      },
-      maxWidth: {
-        content: '84rem',
+        sans: ['"Schibsted Grotesk"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       transitionTimingFunction: {
         swiss: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      },
-      letterSpacing: {
-        display: '-0.055em',
-        heading: '-0.035em',
       },
     },
   },

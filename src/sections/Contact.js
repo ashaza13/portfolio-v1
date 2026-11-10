@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { FiArrowUpRight } from "react-icons/fi";
-import Reveal from "../components/Reveal";
-import Rule from "../components/Rule";
+import SectionHeader from "../components/SectionHeader";
+import Resume from "../static/AshazAhmed.pdf";
 import { EMAIL, socials } from "../data";
 
+// The address is the headline.
 const Contact = () => {
     const [copied, setCopied] = useState(false);
 
@@ -18,51 +18,38 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="container-page pb-24 sm:pb-32">
-            <Rule />
-            <Reveal className="flex flex-col items-center gap-8 pt-24 text-center sm:pt-32">
-                <p className="text-[15px] text-muted">
-                    <span className="font-semibold text-paper">05</span>
-                    <span aria-hidden="true">{"  —  "}</span>
-                    Contact
-                </p>
-                <h2 className="max-w-[10em] font-display text-[clamp(2.75rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.05em]">
-                    Let's build something together<span className="text-accent">.</span>
-                </h2>
-                <p className="max-w-[32em] text-[17px] leading-relaxed text-body">
-                    I'm always open to new opportunities and interesting problems. Whether you're hiring, want to
-                    collaborate on an AI project, or just want to say hi, my inbox is open.
-                </p>
-
-                <div className="mt-2 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
-                    <a href={`mailto:${EMAIL}`} className="btn-solid h-[52px] px-[26px]">
-                        Say hello <FiArrowUpRight aria-hidden="true" />
+        <section id="contact" className="container-page pb-[72px]">
+            <SectionHeader index="05" title="Write to" note="Hiring, collaborating, or saying hi" />
+            <div className="pt-4">
+                <a
+                    href={`mailto:${EMAIL}`}
+                    className="mail-link inline-block break-all pb-2.5 text-[clamp(1.75rem,6.6vw,6.75rem)] font-semibold leading-none tracking-[-0.045em]"
+                >
+                    {EMAIL}
+                </a>
+            </div>
+            <ul className="label mt-10 flex flex-wrap gap-x-7 gap-y-3">
+                {socials.map(({ name, href }) => (
+                    <li key={name}>
+                        <a href={href} target="_blank" rel="noopener noreferrer">
+                            {name} ↗
+                        </a>
+                    </li>
+                ))}
+                <li>
+                    <a href={Resume} download="Ashaz_Ahmed_Resume.pdf">
+                        CV (PDF) ↓
                     </a>
-                    <button type="button" onClick={copyEmail} className="btn-line h-[52px] px-[26px]">
-                        {copied ? "Copied ✓" : "Copy email"}
+                </li>
+                <li>
+                    <button type="button" onClick={copyEmail} className="label text-muted hover:text-accent">
+                        {copied ? "Copied ✓" : "Copy address"}
                     </button>
-                </div>
-                <span className="sr-only" aria-live="polite">
-                    {copied ? "Email address copied to clipboard" : ""}
-                </span>
-
-                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-body">
-                    {socials
-                        .filter((s) => s.name !== "Email")
-                        .map(({ name, href }) => (
-                            <li key={name}>
-                                <a
-                                    href={href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="link-draw hover:text-paper"
-                                >
-                                    {name}
-                                </a>
-                            </li>
-                        ))}
-                </ul>
-            </Reveal>
+                    <span className="sr-only" aria-live="polite">
+                        {copied ? "Email address copied to clipboard" : ""}
+                    </span>
+                </li>
+            </ul>
         </section>
     );
 };
