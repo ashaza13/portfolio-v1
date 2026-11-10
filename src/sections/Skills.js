@@ -1,48 +1,34 @@
 import React from "react";
 import SectionHeading from "../components/SectionHeading";
-import Reveal from "../components/Reveal";
+import Rule from "../components/Rule";
 import { skillCategories } from "../data";
+import Reveal from "../components/Reveal";
 
 const Skills = () => (
-    <section id="skills" className="py-24 sm:py-32">
-        <div className="container-page">
-            <SectionHeading
-                index="02"
-                eyebrow="Skills"
-                title="A toolkit built for shipping systems at scale."
-                description="The languages, frameworks, and platforms I use to take systems from prototype to production."
-            />
+    <section id="skills" className="container-page pb-24 sm:pb-32">
+        <SectionHeading index="02" label="Skills" title="A toolkit built for shipping systems at scale." />
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {skillCategories.map((category, i) => (
-                    <Reveal
-                        key={category.title}
-                        delay={i * 0.05}
-                        className={`card group relative overflow-hidden p-6 transition-colors duration-300 hover:border-white/[0.14] ${
-                            category.wide ? "md:col-span-2" : ""
-                        }`}
-                    >
-                        <div
-                            className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-accent/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
-                            aria-hidden="true"
-                        />
-                        <h3 className="text-lg font-medium text-white">{category.title}</h3>
-                        <p className="mt-1 text-sm text-zinc-500">{category.description}</p>
-                        <ul className="mt-6 flex flex-wrap gap-2">
-                            {category.skills.map(({ icon: Icon, name }) => (
-                                <li
-                                    key={name}
-                                    className="flex items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.02] px-3 py-2 text-sm text-zinc-300 transition-colors duration-200 hover:border-accent/40 hover:text-white"
-                                >
-                                    <Icon className="h-4 w-4 text-zinc-500" aria-hidden="true" />
-                                    {name}
-                                </li>
-                            ))}
-                        </ul>
-                    </Reveal>
-                ))}
-            </div>
-        </div>
+        <Rule />
+        <ul>
+            {skillCategories.map((category, i) => (
+                <Reveal
+                    as="li"
+                    key={category.title}
+                    delay={i * 0.04}
+                    className="grid-12 items-baseline gap-y-2 border-b border-hair py-[22px] transition-colors duration-500 ease-swiss hover:bg-[#141414]"
+                >
+                    <span className="col-span-full text-[13px] text-muted md:col-span-3">
+                        {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="col-span-full text-xl font-medium tracking-[-0.015em] md:col-span-5">
+                        {category.title}
+                    </h3>
+                    <p className="col-span-full text-[15px] leading-relaxed text-body md:col-span-4">
+                        {category.skills.map((s) => s.name).join(", ")}
+                    </p>
+                </Reveal>
+            ))}
+        </ul>
     </section>
 );
 

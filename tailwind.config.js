@@ -4,34 +4,35 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: {
-          950: '#08080a',
-          900: '#0e0e11',
-          850: '#131317',
-          800: '#18181d',
-          700: '#232329',
-        },
-        accent: {
-          DEFAULT: '#7c8cff',
-          soft: '#a5b0ff',
-          muted: 'rgba(124, 140, 255, 0.12)',
+        // Swiss palette: near-black ground, off-white type, a ramp of grays, one orange.
+        ink: '#0a0a0a',
+        paper: '#f5f5f5',
+        body: '#bdbdbd',
+        muted: '#8f8f8f',
+        line: '#2e2e2e',
+        hair: '#222222',
+        surface: '#161616',
+        accent: '#ff5a1f',
+        // Used on the inverted (light) bands.
+        band: {
+          body: '#404040',
+          muted: '#5e5e5e',
+          line: '#d4d4d4',
         },
       },
       fontFamily: {
-        sans: ['Geist', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        sans: ['Inter', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['"Inter Tight"', 'Inter', '"Helvetica Neue"', 'Arial', 'sans-serif'],
       },
       maxWidth: {
-        content: '72rem',
+        content: '84rem',
       },
-      keyframes: {
-        'pulse-dot': {
-          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-          '50%': { opacity: '0.4', transform: 'scale(0.85)' },
-        },
+      transitionTimingFunction: {
+        swiss: 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
-      animation: {
-        'pulse-dot': 'pulse-dot 2s ease-in-out infinite',
+      letterSpacing: {
+        display: '-0.055em',
+        heading: '-0.035em',
       },
     },
   },

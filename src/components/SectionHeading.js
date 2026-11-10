@@ -1,19 +1,14 @@
 import React from "react";
 import Reveal from "./Reveal";
 
-const SectionHeading = ({ index, eyebrow, title, description }) => (
-    <Reveal className="mb-12 sm:mb-16 max-w-2xl">
-        <p className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            <span className="text-zinc-500">{index}</span>
-            <span className="h-px w-8 bg-accent/40" aria-hidden="true" />
-            {eyebrow}
+// Swiss section header: index + label in the first three columns, headline across the rest.
+const SectionHeading = ({ index, label, title, light = false, className = "" }) => (
+    <Reveal className={`grid-12 gap-y-6 pb-12 ${className}`}>
+        <p className="col-span-full flex flex-col gap-1.5 text-[15px] md:col-span-3">
+            <span className="font-display font-semibold">{index}</span>
+            <span className={light ? "text-band-muted" : "text-muted"}>{label}</span>
         </p>
-        <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold tracking-tight text-white leading-[1.1]">
-            {title}
-        </h2>
-        {description && (
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-zinc-400">{description}</p>
-        )}
+        <h2 className="heading-2 col-span-full max-w-[14em] md:col-span-9">{title}</h2>
     </Reveal>
 );
 

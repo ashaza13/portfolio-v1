@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
-import { FiMenu, FiX, FiDownload } from "react-icons/fi";
+import { FiMenu, FiX, FiArrowDown } from "react-icons/fi";
 import Resume from "../static/AshazAhmed.pdf";
 import { navigation } from "../data";
 
@@ -31,56 +31,41 @@ const sectionIds = navigation.map((item) => item.id);
 
 const Nav = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const active = useActiveSection(sectionIds);
 
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 16);
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
-
     return (
-        <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
-            <nav
-                aria-label="Global"
-                className={`mx-auto flex max-w-content items-center justify-between rounded-full border py-2 pl-5 pr-2 transition-all duration-300 ${
-                    scrolled
-                        ? "border-white/10 bg-ink-900/75 shadow-[0_8px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl"
-                        : "border-transparent bg-transparent"
-                }`}
-            >
-                <a href="#top" className="flex items-center gap-2 text-sm font-semibold tracking-tight text-white">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white font-mono text-xs text-ink-950">
-                        AA
-                    </span>
-                    <span className="hidden sm:inline">Ashaz Ahmed</span>
+        <header className="sticky top-0 z-50 border-b border-paper bg-ink/80 backdrop-blur-md">
+            <nav aria-label="Global" className="container-page grid-12 h-16 items-center text-sm">
+                <a href="#top" className="col-span-2 font-semibold tracking-[-0.01em] md:col-span-3">
+                    Ashaz Ahmed
                 </a>
 
-                <div className="hidden items-center gap-1 lg:flex">
+                <div className="hidden gap-7 md:col-span-6 md:flex lg:col-span-5">
                     {navigation.map((item) => (
                         <a
                             key={item.id}
                             href={`#${item.id}`}
                             aria-current={active === item.id ? "true" : undefined}
-                            className={`rounded-full px-3.5 py-1.5 text-sm transition-colors duration-200 ${
-                                active === item.id ? "bg-white/[0.08] text-white" : "text-zinc-400 hover:text-white"
-                            }`}
+                            className={`link-draw ${active === item.id ? "text-paper" : "text-body hover:text-paper"}`}
                         >
                             {item.name}
                         </a>
                     ))}
                 </div>
 
-                <div className="flex items-center gap-2">
-                    <a href={Resume} download="Ashaz_Ahmed_Resume.pdf" className="btn-primary hidden py-2 sm:inline-flex">
-                        <FiDownload aria-hidden="true" />
+                <div className="col-span-2 flex items-center justify-end gap-6 md:col-span-3 lg:col-span-4">
+                    <span className="hidden text-muted lg:inline">Reston, VA</span>
+                    <a
+                        href={Resume}
+                        download="Ashaz_Ahmed_Resume.pdf"
+                        className="btn-line hidden h-11 px-[18px] text-sm sm:inline-flex"
+                    >
                         Resume
+                        <FiArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
                     </a>
                     <button
                         type="button"
-                        className="icon-btn lg:hidden"
+                        className="-mr-2 inline-flex h-11 w-11 items-center justify-center md:hidden"
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
@@ -89,38 +74,38 @@ const Nav = () => {
                 </div>
             </nav>
 
-            <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-                <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" aria-hidden="true" />
-                <Dialog.Panel className="fixed inset-x-3 top-3 z-50 rounded-3xl border border-white/10 bg-ink-900 p-5 shadow-2xl">
-                    <div className="flex items-center justify-between">
-                        <span className="flex items-center gap-2 text-sm font-semibold text-white">
-                            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white font-mono text-xs text-ink-950">
-                                AA
-                            </span>
-                            Ashaz Ahmed
-                        </span>
-                        <button type="button" className="icon-btn" onClick={() => setMobileMenuOpen(false)}>
+            <Dialog as="div" className="md:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+                <Dialog.Panel className="fixed inset-0 z-50 flex flex-col bg-ink px-5">
+                    <div className="flex h-16 items-center justify-between border-b border-paper text-sm">
+                        <span className="font-semibold">Ashaz Ahmed</span>
+                        <button
+                            type="button"
+                            className="-mr-2 inline-flex h-11 w-11 items-center justify-center"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
                             <span className="sr-only">Close menu</span>
                             <FiX className="h-5 w-5" aria-hidden="true" />
                         </button>
                     </div>
-                    <ul className="mt-6 space-y-1">
+                    <ul className="mt-4">
                         {navigation.map((item, i) => (
-                            <li key={item.id}>
+                            <li key={item.id} className="border-b border-hair">
                                 <a
                                     href={`#${item.id}`}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="flex items-center justify-between rounded-2xl px-4 py-3.5 text-lg text-zinc-200 transition-colors hover:bg-white/[0.05] hover:text-white"
+                                    className="flex items-baseline justify-between py-5 font-display text-3xl font-semibold tracking-heading"
                                 >
                                     {item.name}
-                                    <span className="font-mono text-xs text-zinc-600">0{i + 1}</span>
+                                    <span className="font-sans text-sm font-normal tracking-normal text-muted">
+                                        0{i + 1}
+                                    </span>
                                 </a>
                             </li>
                         ))}
                     </ul>
-                    <a href={Resume} download="Ashaz_Ahmed_Resume.pdf" className="btn-primary mt-6 w-full py-3">
-                        <FiDownload aria-hidden="true" />
+                    <a href={Resume} download="Ashaz_Ahmed_Resume.pdf" className="btn-solid mt-8 w-full">
                         Download resume
+                        <FiArrowDown aria-hidden="true" />
                     </a>
                 </Dialog.Panel>
             </Dialog>

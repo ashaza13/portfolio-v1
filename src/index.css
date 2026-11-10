@@ -10,20 +10,21 @@
   }
 
   body {
-    @apply bg-ink-950 font-sans text-zinc-300 antialiased;
+    @apply bg-ink font-sans text-paper antialiased;
+    font-feature-settings: 'tnum' 1, 'ss01' 1;
     overflow-x: hidden;
   }
 
   ::selection {
-    @apply bg-accent/30 text-white;
+    @apply bg-accent text-ink;
   }
 
   section[id] {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: 4rem;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-accent/70 ring-offset-2 ring-offset-ink-950;
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-ink;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -35,49 +36,58 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12;
   }
 
-  .card {
-    @apply rounded-2xl border border-white/[0.07] bg-ink-900/80;
+  /* 4 columns on phones, 12 from md up. */
+  .grid-12 {
+    @apply grid grid-cols-4 gap-x-4 md:grid-cols-12 md:gap-x-6;
   }
 
-  .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-zinc-400;
+  .heading-2 {
+    @apply font-display text-[2rem] font-semibold leading-[1.02] tracking-heading sm:text-[2.6rem] lg:text-[3.25rem];
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200;
+    @apply inline-flex h-12 items-center justify-center gap-2.5 border px-[22px] text-[15px] transition-colors duration-300 ease-swiss;
   }
 
-  .btn-primary {
-    @apply btn bg-white text-ink-950 hover:bg-zinc-200;
+  .btn-solid {
+    @apply btn border-paper bg-paper text-ink hover:bg-ink hover:text-paper;
   }
 
-  .btn-ghost {
-    @apply btn border border-white/10 bg-white/[0.03] text-zinc-200 hover:border-white/20 hover:bg-white/[0.06];
+  .btn-line {
+    @apply btn border-paper text-paper hover:bg-paper hover:text-ink;
   }
 
-  .icon-btn {
-    @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition-colors duration-200 hover:border-white/20 hover:text-white;
+  .btn-line-dark {
+    @apply btn border-ink text-ink hover:bg-ink hover:text-paper;
+  }
+
+  /* Underline that draws in from the left, in the accent color. */
+  .link-draw {
+    background: linear-gradient(theme('colors.accent'), theme('colors.accent')) 0 100% / 0 1px no-repeat;
+    transition: background-size 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+  }
+
+  .link-draw:hover,
+  .link-draw[aria-current='true'] {
+    background-size: 100% 1px;
+  }
+
+  /* Grayscale images that come to color on hover of a .group parent. */
+  .img-swiss {
+    filter: grayscale(1) brightness(0.88);
+    transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .group:hover .img-swiss {
+    filter: grayscale(0) brightness(1);
+    transform: scale(1.025);
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    background-image: linear-gradient(100deg, #ffffff 10%, #c3caff 45%, #8f9cff 90%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -91,7 +101,7 @@
 /* Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #2a2a31 transparent;
+  scrollbar-color: #2e2e2e transparent;
 }
 
 *::-webkit-scrollbar {
@@ -99,7 +109,6 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #2a2a31;
-  border-radius: 9999px;
-  border: 3px solid #08080a;
+  background: #2e2e2e;
+  border: 3px solid #0a0a0a;
 }

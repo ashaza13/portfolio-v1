@@ -1,77 +1,68 @@
 import React from "react";
 import ashaz from "../static/images/ashaz.jpg";
-import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
-import { FiMapPin } from "react-icons/fi";
 
 const facts = [
     { label: "Currently", value: "Backend Engineer, Takt" },
-    { label: "Previously", value: "Accenture Federal Services · GDIT" },
+    { label: "Previously", value: "Accenture Federal Services, GDIT" },
     { label: "Education", value: "B.S. Computer Science, Virginia Tech" },
-    { label: "Focus", value: "Streaming data · Go · Distributed systems" },
+    { label: "Focus", value: "Streaming data, Go, distributed systems" },
 ];
 
 const About = () => (
-    <section id="about" className="py-24 sm:py-32">
-        <div className="container-page">
-            <SectionHeading index="01" eyebrow="About" title="Building the real-time backbone of modern software." />
+    <section id="about" className="container-page py-24 sm:py-32">
+        <div className="grid-12 gap-y-12">
+            <Reveal className="col-span-full flex flex-col gap-1.5 text-[15px] md:col-span-3">
+                <span className="font-display font-semibold">01</span>
+                <span className="text-muted">About</span>
+            </Reveal>
 
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-                <Reveal className="space-y-5 text-base leading-relaxed text-zinc-400 sm:text-lg lg:col-span-7">
-                    <p>
-                        Hello! I'm a <span className="text-zinc-100">backend engineer at Takt</span>, where we're building a modern
-                        workforce platform that benefits from AI without relying on it. I architected and built our real-time data
-                        streaming pipelines on Google Cloud, which process around a billion rows a day, along with our notification,
-                        gamification, and Learning Curve systems.
-                    </p>
-                    <p>
-                        Before Takt, I was a Data &amp; AI Solutions Architect at Accenture Federal Services, where I shipped
-                        LLM-powered agents and ML systems that supported over 14 million users in the public sector.
-                    </p>
-                    <p>
-                        My journey in computer science began as a kid, when I first discovered WordPress and built a website for a
-                        science fair. That spark turned into a passion that has only grown stronger.
-                    </p>
-                    <p>
-                        I earned my degree in <span className="text-zinc-100">Computer Science from Virginia Tech</span> and keep
-                        working on projects that push what's possible with technology.
-                    </p>
+            <Reveal className="col-span-full flex flex-col gap-6 md:col-span-5">
+                <h2 className="heading-2 mb-2">Building the real-time backbone of modern software.</h2>
+                <p className="text-[17px] leading-[1.65] text-body">
+                    Hello! I'm a <span className="text-paper">backend engineer at Takt</span>, where we're building a
+                    modern workforce platform that benefits from AI without relying on it. I architected and built our
+                    real-time data streaming pipelines on Google Cloud, which process around a billion rows a day, along
+                    with our notification, gamification, and Learning Curve systems.
+                </p>
+                <p className="text-[17px] leading-[1.65] text-body">
+                    Before Takt, I was a Data &amp; AI Solutions Architect at Accenture Federal Services, where I shipped
+                    LLM-powered agents and ML systems that supported over 14 million users in the public sector.
+                </p>
+                <p className="text-[17px] leading-[1.65] text-body">
+                    My journey in computer science began as a kid, when I first discovered WordPress and built a website
+                    for a science fair. I earned my degree in{" "}
+                    <span className="text-paper">Computer Science from Virginia Tech</span> and keep working on projects
+                    that push what's possible with technology.
+                </p>
 
-                    <dl className="!mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
-                        {facts.map((fact) => (
-                            <div key={fact.label} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
-                                <dt className="w-28 shrink-0 font-mono text-xs uppercase tracking-[0.15em] text-zinc-500">
-                                    {fact.label}
-                                </dt>
-                                <dd className="text-base text-zinc-200">{fact.value}</dd>
-                            </div>
-                        ))}
-                    </dl>
-                </Reveal>
-
-                <Reveal delay={0.1} className="lg:col-span-5">
-                    <figure className="group relative mx-auto max-w-sm lg:ml-auto">
+                <dl className="mt-6 border-t border-paper">
+                    {facts.map((fact) => (
                         <div
-                            className="absolute -inset-px rounded-[1.75rem] bg-gradient-to-b from-accent/50 via-white/10 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"
-                            aria-hidden="true"
-                        />
-                        <div className="relative overflow-hidden rounded-[1.7rem] bg-ink-900 p-2">
-                            <img
-                                src={ashaz}
-                                alt="Portrait of Ashaz Ahmed"
-                                loading="lazy"
-                                className="aspect-[4/5] w-full rounded-[1.35rem] object-cover grayscale-[30%] transition-all duration-700 group-hover:grayscale-0"
-                            />
-                            <figcaption className="absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-xl border border-white/10 bg-ink-950/70 px-4 py-3 backdrop-blur-md">
-                                <span className="text-sm font-medium text-white">Ashaz Ahmed</span>
-                                <span className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
-                                    <FiMapPin aria-hidden="true" /> Northern Virginia
-                                </span>
-                            </figcaption>
+                            key={fact.label}
+                            className="grid grid-cols-[7.5rem_1fr] gap-4 border-b border-hair py-3.5 text-[15px]"
+                        >
+                            <dt className="text-muted">{fact.label}</dt>
+                            <dd>{fact.value}</dd>
                         </div>
-                    </figure>
-                </Reveal>
-            </div>
+                    ))}
+                </dl>
+            </Reveal>
+
+            <Reveal delay={0.1} as="figure" className="group col-span-full flex flex-col gap-3 md:col-span-4">
+                <div className="aspect-[4/5] overflow-hidden bg-surface">
+                    <img
+                        src={ashaz}
+                        alt="Portrait of Ashaz Ahmed"
+                        loading="lazy"
+                        className="img-swiss h-full w-full object-cover"
+                    />
+                </div>
+                <figcaption className="flex justify-between text-[13px] text-muted">
+                    <span>Ashaz Ahmed</span>
+                    <span>Northern Virginia</span>
+                </figcaption>
+            </Reveal>
         </div>
     </section>
 );

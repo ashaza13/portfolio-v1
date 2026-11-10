@@ -52,6 +52,13 @@ export const navigation = [
     { name: "Contact", id: "contact" },
 ];
 
+export const facts = [
+    { value: "10", label: "Real-time pipelines" },
+    { value: "~100M", label: "Rows per day, each" },
+    { value: "14M+", label: "Users supported" },
+    { value: "1.4M", label: "Support calls handled" },
+];
+
 export const experiences = [
     {
         company: "Takt",
