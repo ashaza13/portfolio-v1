@@ -10,20 +10,24 @@
   }
 
   body {
-    @apply bg-ink-950 font-sans text-zinc-300 antialiased;
+    @apply bg-ink font-sans text-paper antialiased;
     overflow-x: hidden;
   }
 
   ::selection {
-    @apply bg-accent/30 text-white;
+    @apply bg-accent text-ink;
   }
 
   section[id] {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: 3.25rem;
+  }
+
+  a:hover {
+    @apply text-accent;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-accent/70 ring-offset-2 ring-offset-ink-950;
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-ink;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -35,63 +39,159 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-10;
   }
 
-  .card {
-    @apply rounded-2xl border border-white/[0.07] bg-ink-900/80;
+  /* 4 columns on phones, 12 from md up. */
+  .grid-12 {
+    @apply grid grid-cols-4 gap-x-4 md:grid-cols-12 md:gap-x-6;
   }
 
-  .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-zinc-400;
+  /* Small uppercase data label. */
+  .label {
+    @apply font-mono text-xs uppercase tracking-[0.02em] tabular-nums;
   }
 
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200;
+  .row-hover {
+    @apply transition-colors duration-500 ease-swiss hover:bg-[#141414];
   }
 
-  .btn-primary {
-    @apply btn bg-white text-ink-950 hover:bg-zinc-200;
+  /* Big email link: an orange underline draws in on hover. */
+  .mail-link {
+    background: linear-gradient(theme('colors.accent'), theme('colors.accent')) 0 100% / 0 3px no-repeat;
+    transition: background-size 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .btn-ghost {
-    @apply btn border border-white/10 bg-white/[0.03] text-zinc-200 hover:border-white/20 hover:bg-white/[0.06];
-  }
-
-  .icon-btn {
-    @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition-colors duration-200 hover:border-white/20 hover:text-white;
+  .mail-link:hover {
+    @apply text-paper;
+    background-size: 100% 3px;
   }
 }
 
-@layer utilities {
-  .text-gradient {
-    background-image: linear-gradient(100deg, #ffffff 10%, #c3caff 45%, #8f9cff 90%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+/* ---------- Flow field: rows stream through a Beam / Dataflow gate ---------- */
 
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
+/*
+ * Each point is a full-lane-width track that slides across with translateX(0 → 100%),
+ * so the motion stays on the compositor. The dot inside runs a second animation with
+ * the same duration and delay for its color and the pulse at the gate.
+ */
+.flow-track {
+  position: absolute;
+  inset: 0;
+  animation: flow-move var(--dur) linear var(--delay) infinite;
+  will-change: transform, opacity;
+}
 
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+.flow-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 9999px;
+  background: #5a5a5a;
+  animation: flow-pass var(--dur) linear var(--delay) infinite;
+}
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+.flow-track.is-agg {
+  animation-name: flow-move-agg;
+}
+
+.flow-track.is-agg .flow-dot {
+  animation-name: flow-pass-agg;
+}
+
+.flow-track.is-insight .flow-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  animation-name: flow-pass-insight;
+}
+
+@keyframes flow-move {
+  0% { transform: translateX(0); opacity: 0; }
+  4% { opacity: 1; }
+  96% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Aggregated rows: absorbed shortly after the gate. */
+@keyframes flow-move-agg {
+  0% { transform: translateX(0); opacity: 0; }
+  4% { opacity: 1; }
+  51% { opacity: 0.9; }
+  60% { transform: translateX(60%); opacity: 0; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes flow-pass {
+  0%, 49% { background: #5a5a5a; transform: scale(1); }
+  51% { background: #f5f5f5; transform: scale(1.5); }
+  54%, 100% { background: #f5f5f5; transform: scale(1); }
+}
+
+@keyframes flow-pass-agg {
+  0%, 49% { background: #5a5a5a; }
+  51%, 100% { background: #8f8f8f; }
+}
+
+@keyframes flow-pass-insight {
+  0%, 49% { background: #5a5a5a; transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 90, 31, 0); }
+  51% { background: #ff5a1f; transform: scale(1.6); box-shadow: 0 0 0 6px rgba(255, 90, 31, 0.18); }
+  60%, 100% { background: #ff5a1f; transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 90, 31, 0); }
+}
+
+/* Insight feed: four lines that take turns sliding up. */
+.feed-item {
+  opacity: 0;
+  animation: feed 12.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes feed {
+  0% { opacity: 0; transform: translateY(100%); }
+  3%, 22% { opacity: 1; transform: none; }
+  25% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1.6s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.fade-in {
+  animation: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(1.03); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Freeze the flow mid-stream so it still reads as a picture. */
+  .flow-track,
+  .flow-dot {
+    animation-play-state: paused;
+  }
+  .feed-item,
+  .blink,
+  .fade-in {
+    animation: none;
+  }
+  .feed-item:first-child {
+    opacity: 1;
   }
 }
 
 /* Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #2a2a31 transparent;
+  scrollbar-color: #2e2e2e transparent;
 }
 
 *::-webkit-scrollbar {
@@ -99,7 +199,6 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #2a2a31;
-  border-radius: 9999px;
-  border: 3px solid #08080a;
+  background: #2e2e2e;
+  border: 3px solid #0a0a0a;
 }

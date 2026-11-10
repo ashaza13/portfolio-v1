@@ -9,10 +9,11 @@ beforeAll(() => {
   };
 });
 
-test('renders the hero and every section', () => {
+test('renders the hero, the flow graphic and every section', () => {
   render(<App />);
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/Ashaz Ahmed/);
-  ['about', 'skills', 'experience', 'work', 'contact'].forEach((id) => {
+  expect(screen.getByRole('img', { name: /pipelines stream raw rows/i })).toBeInTheDocument();
+  ['top', 'systems', 'record', 'work', 'stack', 'contact'].forEach((id) => {
     expect(document.getElementById(id)).toBeInTheDocument();
   });
 });
